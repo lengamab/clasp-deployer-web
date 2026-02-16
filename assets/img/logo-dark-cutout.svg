@@ -1,0 +1,35 @@
+<svg width="240" height="60" viewBox="0 0 240 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+        <!-- Neon Glow Filter -->
+        <filter id="neon-purple" x="-50%" y="-50%" width="200%" height="200%">
+            <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+            <feMerge>
+                <feMergeNode in="coloredBlur"/>
+                <feMergeNode in="SourceGraphic"/>
+            </feMerge>
+        </filter>
+        
+        <!-- Energy Stream Gradient -->
+        <linearGradient id="stream-grad" x1="0%" y1="50%" x2="100%" y2="50%">
+            <stop offset="0%" stop-color="#A855F7" /> <!-- Purple-500 -->
+            <stop offset="50%" stop-color="#D8B4FE" /> <!-- Purple-300 -->
+            <stop offset="100%" stop-color="#3B82F6" /> <!-- Blue-500 -->
+        </linearGradient>
+    </defs>
+
+    <!-- Text: Script (White) -->
+    <text x="5" y="42" font-family="'Inter', sans-serif" font-weight="700" font-size="36" fill="white" letter-spacing="-1">Script</text>
+
+    <!-- Text: Flow (Outlined/Energy) -->
+    <!-- We simulate the 'turn into energy' by making the text itself the path -->
+    <g transform="translate(110, 15)">
+        <path d="M5,5 L5,35 L20,35 M5,20 L18,20" stroke="url(#stream-grad)" stroke-width="3" fill="none" filter="url(#neon-purple)" transform="translate(0,0)"/> <!-- F -->
+        <path d="M25,5 L25,35" stroke="url(#stream-grad)" stroke-width="3" fill="none" filter="url(#neon-purple)" transform="translate(0,0)"/> <!-- l -->
+        <circle cx="45" cy="20" r="10" stroke="url(#stream-grad)" stroke-width="3" fill="none" filter="url(#neon-purple)"/> <!-- o -->
+        <path d="M60,5 L67,35 L75,20 L83,35 L90,5" stroke="url(#stream-grad)" stroke-width="3" fill="none" filter="url(#neon-purple)"/> <!-- w -->
+        
+        <!-- Energy Tails -->
+        <path d="M25,5 C 25,-10 60,-10 90,5" stroke="url(#stream-grad)" stroke-width="2" fill="none" filter="url(#neon-purple)" stroke-dasharray="4 2" opacity="0.8"/>
+        <path d="M5,35 C 5,50 40,50 90,35" stroke="url(#stream-grad)" stroke-width="2" fill="none" filter="url(#neon-purple)" stroke-dasharray="2 4" opacity="0.6"/>
+    </g>
+</svg>

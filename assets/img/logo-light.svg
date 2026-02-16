@@ -1,0 +1,20 @@
+<svg width="200" height="50" viewBox="0 0 200 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+        <linearGradient id="flow-gradient-dark" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stop-color="#8B5CF6"/> <!-- Bright Purple (matches favicon) -->
+            <stop offset="100%" stop-color="#3B82F6"/> <!-- Bright Blue (matches favicon) -->
+        </linearGradient>
+    </defs>
+
+    <!-- Text: Script (Dark Grey) -->
+    <text x="10" y="35" font-family="Inter, system-ui, sans-serif" font-weight="600" font-size="28" fill="#1F2937" letter-spacing="-0.5">Script</text>
+    
+    <!-- Text: Flow (Deep Purple) -->
+    <text x="95" y="35" font-family="Inter, system-ui, sans-serif" font-weight="700" font-size="28" fill="url(#flow-gradient-dark)" letter-spacing="-0.5">Flow</text>
+
+    <!-- Graphic: The 'Flow' Wave -->
+    <path d="M98 42 C 110 42, 115 38, 125 42 C 135 46, 140 38, 155 42" 
+          stroke="url(#flow-gradient-dark)" 
+          stroke-width="3" 
+          stroke-linecap="round"/>
+</svg>

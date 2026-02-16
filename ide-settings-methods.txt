@@ -1,0 +1,96 @@
+
+    // ===== IDE Management =====
+    
+    async loadIDESettings() {
+        try {
+            const response = await fetch('/api/settings/ide/available');
+            const data = await response.json();
+            
+            if (data.success) {
+                this.renderIDESelector(data.all, data.recommended);
+                // Load current preference
+                const prefResponse = await fetch('/api/settings/ide');
+                const prefData = await prefResponse.json();
+                if (prefData.success && prefData.preferredIDE) {
+                    this.selectedIDE = prefData.preferredIDE;
+                } else {
+                    this.selectedIDE = data.recommended;
+                }
+                this.updateIDESelection();
+            }
+        } catch (error) {
+            console.error('Failed to load IDE settings:', error);
+        }
+    }
+
+    renderIDESelector(ides, recommendedIDE) {
+        const grid = document.getElementById('ideSelectorGrid');
+        if (!grid) return;
+
+        const ideIcons = {
+            'vscode': 'fab fa-microsoft',
+            'cursor': 'fas fa-edit',
+            'antigravity': 'fas fa-rocket',
+            'webstorm': 'fab fa-js',
+            'intellij': 'fas fa-code',
+            'pycharm': 'fab fa-python',
+            'sublime': 'fas fa-file-code',
+            'vim': 'fas fa-terminal',
+            'neovim': 'fas fa-terminal',
+            'zed': 'fas fa-bolt'
+        };
+
+        grid.innerHTML = ides.map( ide => `
+            <div class="ide-card ${ide.installed ? 'installed' : 'not-installed'}" 
+                 data-ide-id="${ide.id}"
+                 onclick="window.settingsManager.selectIDE('${ide.id}')">
+                <i class="${ideIcons[ide.id] || 'fas fa-code'}"></i>
+                <span class="ide-name">${ide.name}</span>
+                ${ide.installed ? '<span class="badge-installed">✓</span>' : '<span class="badge-not-installed">Not Detected</span>'}
+                ${ide.id === recommendedIDE ? '<span class="badge-recommended">Recommended</span>' : ''}
+            </div>
+        `).join('');
+    }
+
+    async selectIDE(ideId) {
+        this.selectedIDE = ideId;
+        this.updateIDESelection();
+
+        // Save immediately to backend
+        try {
+            const response = await fetch('/api/settings/ide', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ ideId })
+            });
+            
+            const result = await response.json();
+            if (result.success && window.claspDeployer && window.claspDeployer.showNotification) {
+                window.claspDeployer.showNotification(`✅ ${result.message}`);
+            }
+        } catch (error) {
+            console.error('Failed to save IDE preference:', error);
+        }
+    }
+
+    updateIDESelection() {
+        const cards = document.querySelectorAll('.ide-card');
+        cards.forEach(card => {
+            if (card.dataset.ideId === this.selectedIDE) {
+                card.classList.add('selected');
+            } else {
+                card.classList.remove('selected');
+            }
+       });
+    }
+
+    async getSelectedIDE() {
+        try {
+            const response = await fetch('/api/settings/ide');
+            const data = await response.json();
+            return data.success ? data.activeIDE : null;
+        } catch (error) {
+            console.error('Failed to get selected IDE:', error);
+            return null;
+        }
+    }

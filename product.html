@@ -1,0 +1,1401 @@
+<!--
+  Product page for ScriptFlow
+  - Reuses header/footer from /landing.html
+  - See PR description for acceptance tests and QA report
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ScriptFlow Product — Unified IDE for Apps Script & Automation Workflows</title>
+    <meta name="description"
+        content="Discover ScriptFlow's powerful IDE that unifies Google Apps Script, Make.com, Zapier, and n8n. Features version control, live logs, integrated debugger, and AI-powered Blueprint conversion. Try it free today.">
+    <link rel="canonical" href="https://scriptflowapp.space/product">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="ScriptFlow Product — Unified IDE for Automation">
+    <meta property="og:description"
+        content="The complete automation development platform. Unify Google Apps Script and automation workflows with version control, deploy & sync, live logs, debugging tools, and team collaboration.">
+    <meta property="og:image" content="https://scriptflowapp.space/assets/img/product-og-image.png">
+    <meta property="og:url" content="https://scriptflowapp.space/product">
+    <meta property="og:type" content="product">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@scriptflowapp">
+    <meta name="twitter:title" content="ScriptFlow Product — Unified IDE for Automation">
+    <meta name="twitter:description"
+        content="Version control, deploy & sync, live logs, integrated debugger, and AI Blueprint converter. Everything you need to build powerful automation workflows.">
+    <meta name="twitter:image" content="https://scriptflowapp.space/assets/img/product-og-image.png">
+
+    <!-- JSON-LD: Organization -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "ScriptFlow",
+      "url": "https://scriptflowapp.space/",
+      "logo": "https://scriptflowapp.space/assets/img/logo-light.webp",
+      "sameAs": [
+        "https://twitter.com/scriptflowapp",
+        "https://github.com/scriptflow"
+      ],
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "contactType": "customer support",
+        "url": "https://scriptflowapp.space/help-center"
+      }
+    }
+    </script>
+
+    <!-- JSON-LD: SoftwareApplication -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "ScriptFlow",
+      "url": "https://scriptflowapp.space/",
+      "applicationCategory": "DeveloperApplication",
+      "operatingSystem": "Web",
+      "offers": [
+        {
+          "@type": "Offer",
+          "name": "Free",
+          "price": "0",
+          "priceCurrency": "USD"
+        },
+        {
+          "@type": "Offer",
+          "name": "Pro",
+          "price": "29",
+          "priceCurrency": "USD"
+        },
+        {
+          "@type": "Offer",
+          "name": "Enterprise",
+          "price": "Custom",
+          "priceCurrency": "USD"
+        }
+      ],
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "5",
+        "ratingCount": "2"
+      },
+      "description": "Unified IDE for Google Apps Script and automation workflows. Deploy, manage, and monitor your scripts with version control, live logs, and AI-powered Blueprint conversion."
+    }
+    </script>
+
+    <!-- JSON-LD: Website -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "ScriptFlow",
+      "url": "https://scriptflowapp.space/",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https://scriptflowapp.space/search?q={search_term_string}",
+        "query-input": "required name=search_term_string"
+      }
+    }
+    </script>
+
+    <!-- JSON-LD: FAQPage -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What makes ScriptFlow different from using CLASP directly?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "ScriptFlow provides a visual IDE layer on top of CLASP with live logs, version control UI, integrated debugging, and unified management of both Apps Script and automation platforms like Make.com and Zapier in one dashboard."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can I use ScriptFlow with my existing Apps Script projects?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Absolutely. ScriptFlow connects to your existing Google Apps Script projects via OAuth. Import any project and start managing it through our unified dashboard immediately."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Does ScriptFlow support team collaboration?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. ScriptFlow Pro and Enterprise plans include team workspaces, shared project access, role-based permissions, and collaborative debugging features."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How does the AI Blueprint Converter work?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Upload a Make.com or n8n workflow blueprint (JSON), and our AI engine analyzes the nodes, connections, and logic to generate equivalent Google Apps Script code. This allows you to run workflows on Google's free infrastructure, saving on execution costs."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is there a free tier?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. ScriptFlow offers a Free tier with basic project limits and core features. It's perfect for individual developers and small projects."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What integrations does ScriptFlow support?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "ScriptFlow integrates with Google Apps Script, Make.com, Zapier, n8n, GitHub, Slack, and supports webhooks for custom integrations."
+          }
+        }
+      ]
+    }
+    </script>
+
+    <!-- GTM Container ID (loaded by cookie-consent.js after user consent) -->
+    <script>window.GA4_MEASUREMENT_ID = "G-PZ1SQN4MRY"; window.GTM_CONTAINER_ID = 'GTM-XXXXXXX'; window.GA4_MEASUREMENT_ID = 'G-PZ1SQN4MRY';</script>
+    <!-- Cookie Consent & Analytics (GDPR compliant - loads GTM after consent) -->
+    <script src="cookie-consent.js" defer></script>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload"
+        href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;700&family=Inter:wght@400;500;600&display=swap"
+        as="style">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;700&family=Inter:wght@400;500;600&display=swap"
+        rel="stylesheet">
+
+    <!-- Icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"
+        media="print" onload="this.media='all'">
+    <noscript>
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    </noscript>
+    <link rel="icon" type="image/webp" sizes="32x32" href="assets/img/favicon.webp">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="landing.css">
+    <style>
+        /* Product page specific styles - inline critical CSS */
+        .product-hero {
+            min-height: 90vh;
+            padding: 140px 20px 60px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            background: radial-gradient(circle at 15% 50%, rgba(66, 133, 244, 0.08) 0%, transparent 25%),
+                radial-gradient(circle at 85% 30%, rgba(234, 67, 53, 0.08) 0%, transparent 25%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .product-screenshot-container {
+            max-width: 1000px;
+            width: 100%;
+            margin: 40px auto 0;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.15);
+            border: 1px solid var(--border-subtle);
+        }
+
+        .product-screenshot {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* Skip to content link for accessibility */
+        .skip-to-content {
+            position: absolute;
+            left: -9999px;
+            z-index: 999;
+            padding: 1em;
+            background-color: var(--text-primary);
+            color: var(--bg-primary);
+            text-decoration: none;
+            border-radius: 4px;
+        }
+
+        .skip-to-content:focus {
+            left: 50%;
+            transform: translateX(-50%);
+            top: 10px;
+        }
+
+        /* Problem-solution section */
+        .problem-solution-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 32px;
+            margin-top: 40px;
+        }
+
+        .solution-card {
+            background: var(--bg-surface);
+            border-radius: 20px;
+            padding: 28px;
+            border: 1px solid var(--border-subtle);
+            transition: all 0.3s ease;
+        }
+
+        .solution-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px var(--shadow-card);
+            border-color: rgba(66, 133, 244, 0.3);
+        }
+
+        .solution-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            background: var(--bg-secondary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            font-size: 22px;
+        }
+
+        /* Feature cards grid - 6 cards in 3x2 layout */
+        .features-grid-product {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 28px;
+        }
+
+        @media (max-width: 1100px) {
+            .features-grid-product {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 600px) {
+            .features-grid-product {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Use cases section */
+        .use-cases-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 28px;
+            margin-top: 40px;
+        }
+
+        @media (max-width: 768px) {
+            .use-cases-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .use-case-card {
+            background: var(--bg-surface);
+            border-radius: 20px;
+            padding: 32px;
+            border: 1px solid var(--border-subtle);
+            transition: all 0.3s ease;
+        }
+
+        .use-case-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 35px var(--shadow-card);
+        }
+
+        .use-case-card h3 {
+            font-size: 22px;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .use-case-card ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .use-case-card li {
+            padding: 8px 0;
+            color: var(--text-secondary);
+            font-size: 15px;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+        }
+
+        .use-case-card li::before {
+            content: "✓";
+            color: var(--brand-blue);
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+        /* Screenshot carousel */
+        .carousel-container {
+            position: relative;
+            max-width: 1000px;
+            margin: 40px auto;
+            overflow: hidden;
+            border-radius: 16px;
+            background: var(--bg-surface);
+            border: 1px solid var(--border-subtle);
+        }
+
+        .carousel-track {
+            display: flex;
+            transition: transform 0.5s ease;
+        }
+
+        .carousel-slide {
+            min-width: 100%;
+            cursor: pointer;
+        }
+
+        .carousel-slide img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .carousel-controls {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 12px;
+            z-index: 10;
+        }
+
+        .carousel-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.9);
+            border: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.2s;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .carousel-btn:hover {
+            background: white;
+            transform: scale(1.1);
+        }
+
+        @media (prefers-color-scheme: dark) {
+            .carousel-btn {
+                background: rgba(32, 33, 36, 0.9);
+                color: white;
+            }
+
+            .carousel-btn:hover {
+                background: #3c4043;
+            }
+        }
+
+        .carousel-indicators {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 8px;
+            z-index: 5;
+        }
+
+        .carousel-indicator {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.5);
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .carousel-indicator.active {
+            background: var(--brand-blue);
+            width: 32px;
+            border-radius: 5px;
+        }
+
+        /* Pricing table */
+        .pricing-table {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            max-width: 1100px;
+            margin: 40px auto;
+        }
+
+        @media (max-width: 900px) {
+            .pricing-table {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .pricing-card {
+            background: var(--bg-surface);
+            border-radius: 20px;
+            padding: 32px;
+            border: 2px solid var(--border-subtle);
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px var(--shadow-card);
+        }
+
+        .pricing-card.featured {
+            border-color: var(--brand-blue);
+            background: linear-gradient(135deg, rgba(66, 133, 244, 0.05) 0%, var(--bg-surface) 100%);
+        }
+
+        .pricing-badge {
+            display: inline-block;
+            padding: 6px 12px;
+            background: var(--brand-blue);
+            color: white;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            margin-bottom: 16px;
+        }
+
+        .pricing-card h3 {
+            font-size: 24px;
+            margin-bottom: 8px;
+        }
+
+        .pricing-price {
+            font-size: 48px;
+            font-weight: 700;
+            margin: 16px 0;
+            color: var(--text-primary);
+        }
+
+        .pricing-price span {
+            font-size: 18px;
+            font-weight: 400;
+            color: var(--text-secondary);
+        }
+
+        .pricing-features {
+            list-style: none;
+            padding: 0;
+            margin: 24px 0;
+            flex: 1;
+        }
+
+        .pricing-features li {
+            padding: 10px 0;
+            color: var(--text-secondary);
+            font-size: 14px;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+        }
+
+        .pricing-features li i {
+            color: var(--brand-blue);
+            margin-top: 3px;
+            flex-shrink: 0;
+        }
+
+        /* Logo strip for integrations */
+        .integration-logos {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 48px;
+            flex-wrap: wrap;
+            margin: 40px 0;
+            opacity: 0.7;
+        }
+
+        .integration-logo {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s;
+        }
+
+        .integration-logo:hover {
+            opacity: 1;
+            transform: scale(1.05);
+        }
+
+        /* Lightbox for screenshot expansion */
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 9999;
+            align-items: center;
+            justify-content: center;
+            padding: 40px;
+        }
+
+        .lightbox.active {
+            display: flex;
+        }
+
+        .lightbox-content {
+            max-width: 90%;
+            max-height: 90%;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .lightbox-content img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 40px;
+            font-size: 40px;
+            color: white;
+            cursor: pointer;
+            background: none;
+            border: none;
+            padding: 10px;
+            line-height: 1;
+        }
+
+        /* Accordion for FAQ */
+        .faq-accordion .faq-item {
+            background: var(--bg-surface);
+            border: 1px solid var(--border-subtle);
+            border-radius: 12px;
+            margin-bottom: 12px;
+            overflow: hidden;
+        }
+
+        .faq-accordion .faq-item summary {
+            cursor: pointer;
+            padding: 20px;
+            font-size: 16px;
+            font-weight: 600;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .faq-accordion .faq-item summary:hover {
+            background: var(--bg-secondary);
+        }
+
+        .faq-accordion .faq-content {
+            padding: 0 20px 20px;
+        }
+    </style>
+
+    <!-- Theme Script -->
+    <script>
+        (function () {
+            const savedTheme = localStorage.getItem('ui-theme') || 'system';
+            document.documentElement.setAttribute('data-theme', savedTheme);
+        })();
+    </script>
+
+    <!-- Auth Check -->
+    <script src="auth.js" defer></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            if (typeof AuthManager !== 'undefined') {
+                const isAuth = AuthManager.isAuthenticated();
+                const ctaButtons = document.querySelectorAll('.btn-cta');
+
+                ctaButtons.forEach(btn => {
+                    if (btn.getAttribute('href') === '/app' || btn.classList.contains('cta-primary')) {
+                        if (isAuth) {
+                            btn.innerHTML = 'Go to Dashboard <i class="fas fa-arrow-right"></i>';
+                            btn.href = '/app';
+                        } else {
+                            btn.innerHTML = 'Start Free Trial <i class="fas fa-arrow-right"></i>';
+                            btn.href = '/login';
+                        }
+                    }
+                });
+
+                const navCta = document.querySelector('.nav-cta');
+                if (navCta) {
+                    if (isAuth) {
+                        navCta.textContent = 'Dashboard';
+                        navCta.href = '/app';
+                    } else {
+                        navCta.textContent = 'Sign In';
+                        navCta.href = '/login';
+                    }
+                }
+            }
+        });
+    </script>
+</head>
+
+<body class="landing-page">
+    <!-- Skip to content link for accessibility -->
+    <a href="#main-content" class="skip-to-content">Skip to main content</a>
+
+    <!-- Full-Page Particle Background -->
+    <div id="particle-background">
+        <canvas id="hero-particles-canvas"></canvas>
+        <div class="hero-particles"></div>
+    </div>
+
+    <!-- Navigation (reused from landing.html) -->
+    <nav class="landing-nav" role="navigation" aria-label="Main navigation">
+        <a href="/" class="nav-brand">
+            <img src="assets/img/logo-light.webp" alt="ScriptFlow Logo" class="logo-light" width="150" height="53">
+            <img src="assets/img/logo-dark.webp" alt="ScriptFlow Logo" class="logo-dark" width="150" height="53">
+        </a>
+
+        <div class="nav-menu">
+            <a href="/product" class="nav-link-item active">Product</a>
+
+            <div class="nav-link-item">
+                Use Cases <i class="fas fa-chevron-down"></i>
+                <div class="submenu-container">
+                    <a href="#agencies" class="submenu-item">
+                        <div class="submenu-icon"><i class="fas fa-briefcase"></i></div>
+                        <div class="submenu-text">
+                            <h4>Agencies</h4>
+                            <p>Manage client automation at scale</p>
+                        </div>
+                    </a>
+                    <a href="#ops" class="submenu-item">
+                        <div class="submenu-icon"><i class="fas fa-cogs"></i></div>
+                        <div class="submenu-text">
+                            <h4>Operations</h4>
+                            <p>Streamline internal workflows</p>
+                        </div>
+                    </a>
+                    <a href="#developers" class="submenu-item">
+                        <div class="submenu-icon"><i class="fas fa-code"></i></div>
+                        <div class="submenu-text">
+                            <h4>Developers</h4>
+                            <p>Power-user automation tools</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <a href="#features" class="nav-link-item">Features</a>
+
+            <div class="nav-link-item">
+                Resources <i class="fas fa-chevron-down"></i>
+                <div class="submenu-container">
+                    <a href="/docs" class="submenu-item">
+                        <div class="submenu-icon"><i class="fas fa-book"></i></div>
+                        <div class="submenu-text">
+                            <h4>Documentation</h4>
+                            <p>Guides, API references & more</p>
+                        </div>
+                    </a>
+                    <a href="/help-center" class="submenu-item">
+                        <div class="submenu-icon"><i class="fas fa-question-circle"></i></div>
+                        <div class="submenu-text">
+                            <h4>Help Center</h4>
+                            <p>Get support and answers</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <a href="/pricing" class="nav-link-item">Pricing</a>
+        </div>
+
+        <div class="nav-actions">
+            <a href="/app" class="btn-cta cta-primary" id="nav-cta">
+                Access ScriptFlow <i class="fas fa-arrow-right"></i>
+            </a>
+        </div>
+    </nav>
+
+    <main id="main-content">
+        <!-- Hero Section -->
+        <section class="product-hero">
+            <div class="hero-badge">
+                <span class="pulse-dot"
+                    style="width:8px;height:8px;background:#34a853;border-radius:50%;display:inline-block;"></span>
+                Now Available — v2.0
+            </div>
+
+            <h1 class="hero-title">
+                The unified IDE for<br>
+                Google Apps Script & Automation
+            </h1>
+
+            <p class="hero-subtitle">
+                Deploy, debug, and manage all your automation workflows from one powerful platform.
+                Version control, live logs, team collaboration, and AI-powered Blueprint conversion included.
+            </p>
+
+            <div class="hero-actions">
+                <a href="/app" class="btn-cta cta-primary" id="hero-cta-primary"
+                    style="padding: 16px 32px; font-size: 18px;">
+                    Start Free Trial <i class="fas fa-arrow-right"></i>
+                </a>
+                <a href="/pricing" class="btn-secondary" id="hero-cta-pricing"
+                    data-event-name="pricing_view_from_product">
+                    <i class="fas fa-tag" style="margin-right: 6px;"></i> See Pricing
+                </a>
+            </div>
+
+            <!-- Product UI Screenshot -->
+            <div class="product-screenshot-container">
+                <!-- REPLACE: Add actual product screenshot -->
+                <img src="assets/img/product-dashboard-hero.webp"
+                    alt="ScriptFlow unified dashboard interface showing project list, deployment controls, and live logs"
+                    class="product-screenshot" width="1000" height="600" loading="eager">
+            </div>
+        </section>
+
+        <!-- Problem → Solution Section -->
+        <section class="section">
+            <div class="section-header">
+                <span class="section-tag">Why ScriptFlow</span>
+                <h2 class="section-title">Stop juggling disconnected tools</h2>
+                <p class="section-subtitle">
+                    ScriptFlow unifies your entire automation stack, eliminating context switching and saving you hours
+                    every week.
+                </p>
+            </div>
+
+            <div class="problem-solution-grid">
+                <div class="solution-card">
+                    <div class="solution-icon" style="color: #ea4335;">
+                        <i class="fas fa-times-circle"></i>
+                    </div>
+                    <h3>Problem: Fragmented workflow</h3>
+                    <p>Switching between Apps Script editor, Make.com dashboard, Zapier UI, and terminal for CLASP
+                        commands wastes time and breaks focus.</p>
+                </div>
+
+                <div class="solution-card">
+                    <div class="solution-icon" style="color: #34a853;">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <h3>Solution: One unified IDE</h3>
+                    <p>ScriptFlow brings everything into a single, beautiful interface. Manage Apps Script projects,
+                        automation workflows, and deployments from one dashboard.</p>
+                </div>
+
+                <div class="solution-card">
+                    <div class="solution-icon" style="color: #ea4335;">
+                        <i class="fas fa-times-circle"></i>
+                    </div>
+                    <h3>Problem: No version control visibility</h3>
+                    <p>Apps Script's native versioning is limited. Rollbacks are manual, history is hard to navigate,
+                        and collaboration lacks clarity.</p>
+                </div>
+
+                <div class="solution-card">
+                    <div class="solution-icon" style="color: #34a853;">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <h3>Solution: Git-style version control UI</h3>
+                    <p>ScriptFlow provides intuitive version history, one-click rollbacks, deployment comparison, and
+                        team change tracking — all in a visual interface.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Key Features Section -->
+        <section id="features" class="section" style="background: var(--bg-secondary);">
+            <div class="section-header">
+                <span class="section-tag">Features</span>
+                <h2 class="section-title">Everything you need to build faster</h2>
+                <p class="section-subtitle">
+                    Professional-grade tools designed for modern automation development.
+                </p>
+            </div>
+
+            <div class="features-grid-product">
+                <!-- Feature 1: Unified IDE -->
+                <div class="feature-card">
+                    <div class="feature-icon-wrapper">
+                        <i class="fas fa-columns" style="color:#4285f4"></i>
+                    </div>
+                    <h3>Unified IDE</h3>
+                    <p><strong>Manage everything in one place.</strong></p>
+                    <p style="margin-bottom: 16px;">Apps Script projects, Make.com scenarios, Zapier zaps, and n8n
+                        workflows — all accessible from a single, powerful dashboard.</p>
+                    <!-- REPLACE: Add micro-screenshot -->
+                    <img src="assets/img/feature-unified-ide.webp" alt="Unified IDE showing multiple project types"
+                        style="width: 100%; height: auto; border-radius: 8px; border: 1px solid var(--border-subtle);"
+                        width="300" height="180" loading="lazy">
+                </div>
+
+                <!-- Feature 2: Version Control -->
+                <div class="feature-card">
+                    <div class="feature-icon-wrapper">
+                        <i class="fab fa-git-alt" style="color:#ea4335"></i>
+                    </div>
+                    <h3>Version Control</h3>
+                    <p><strong>Track every change with confidence.</strong></p>
+                    <p style="margin-bottom: 16px;">Visual deployment history, one-click rollbacks, and detailed change
+                        logs ensure you never lose work and can recover instantly.</p>
+                    <img src="assets/img/feature-version-control.webp"
+                        alt="Version control interface with deployment history"
+                        style="width: 100%; height: auto; border-radius: 8px; border: 1px solid var(--border-subtle);"
+                        width="300" height="180" loading="lazy">
+                </div>
+
+                <!-- Feature 3: Deploy & Sync -->
+                <div class="feature-card">
+                    <div class="feature-icon-wrapper">
+                        <i class="fas fa-rocket" style="color:#fbbc04"></i>
+                    </div>
+                    <h3>Deploy & Sync</h3>
+                    <p><strong>Push to production in seconds.</strong></p>
+                    <p style="margin-bottom: 16px;">Integrated CLASP deployment with dev/staging/prod environment
+                        support. Deploy to multiple projects simultaneously.</p>
+                    <img src="assets/img/feature-deploy-sync.webp" alt="One-click deployment interface"
+                        style="width: 100%; height: auto; border-radius: 8px; border: 1px solid var(--border-subtle);"
+                        width="300" height="180" loading="lazy">
+                </div>
+
+                <!-- Feature 4: Live Logs & Alerts -->
+                <div class="feature-card">
+                    <div class="feature-icon-wrapper">
+                        <i class="fas fa-terminal" style="color:#8b5cf6"></i>
+                    </div>
+                    <h3>Live Logs & Alerts</h3>
+                    <p><strong>Monitor execution in real-time.</strong></p>
+                    <p style="margin-bottom: 16px;">Streaming logs, error alerts, and execution metrics give you full
+                        visibility into your automation workflows.</p>
+                    <img src="assets/img/feature-live-logs.webp" alt="Live log streaming terminal"
+                        style="width: 100%; height: auto; border-radius: 8px; border: 1px solid var(--border-subtle);"
+                        width="300" height="180" loading="lazy">
+                </div>
+
+                <!-- Feature 5: Integrated Debugger & Tests -->
+                <div class="feature-card">
+                    <div class="feature-icon-wrapper">
+                        <i class="fas fa-bug" style="color:#34a853"></i>
+                    </div>
+                    <h3>Integrated Debugger & Tests</h3>
+                    <p><strong>Find and fix issues faster.</strong></p>
+                    <p style="margin-bottom: 16px;">Breakpoints, step-through debugging, and automated test runner help
+                        you build reliable automation.</p>
+                    <img src="assets/img/feature-debugger.webp" alt="Debugging interface with breakpoints"
+                        style="width: 100%; height: auto; border-radius: 8px; border: 1px solid var(--border-subtle);"
+                        width="300" height="180" loading="lazy">
+                </div>
+
+                <!-- Feature 6: Team Collaboration -->
+                <div class="feature-card">
+                    <div class="feature-icon-wrapper">
+                        <i class="fas fa-users" style="color:#1a73e8"></i>
+                    </div>
+                    <h3>Team Collaboration</h3>
+                    <p><strong>Work together seamlessly.</strong></p>
+                    <p style="margin-bottom: 16px;">Shared workspaces, role-based permissions, and activity logs keep
+                        your team aligned and productive.</p>
+                    <img src="assets/img/feature-team-collab.webp" alt="Team collaboration dashboard"
+                        style="width: 100%; height: auto; border-radius: 8px; border: 1px solid var(--border-subtle);"
+                        width="300" height="180" loading="lazy">
+                </div>
+            </div>
+        </section>
+
+        <!-- Use Cases Section -->
+        <section class="section">
+            <div class="section-header">
+                <span class="section-tag">Use Cases</span>
+                <h2 class="section-title">Built for every automation workflow</h2>
+            </div>
+
+            <div class="use-cases-grid">
+                <div class="use-case-card" id="agencies">
+                    <h3><i class="fas fa-briefcase" style="color: #4285f4;"></i> Agencies</h3>
+                    <ul>
+                        <li>Manage dozens of client automation projects from one dashboard</li>
+                        <li>White-label deployments and branded reporting</li>
+                        <li>Isolate client workspaces with role-based access</li>
+                        <li>Track billable automation execution time</li>
+                    </ul>
+                </div>
+
+                <div class="use-case-card" id="ops">
+                    <h3><i class="fas fa-cogs" style="color: #ea4335;"></i> Operations Teams</h3>
+                    <ul>
+                        <li>Streamline internal workflows across departments</li>
+                        <li>Centralize automation logic for HR, finance, and IT</li>
+                        <li>Reduce reliance on expensive SaaS automation tools</li>
+                        <li>Audit trail for compliance and security requirements</li>
+                    </ul>
+                </div>
+
+                <div class="use-case-card" id="developers">
+                    <h3><i class="fas fa-code" style="color: #8b5cf6;"></i> Citizen Developers</h3>
+                    <ul>
+                        <li>No-code to low-code transition with visual tools</li>
+                        <li>AI Blueprint Converter turns workflows into code</li>
+                        <li>Templates and starter projects for common use cases</li>
+                        <li>Guided onboarding and interactive tutorials</li>
+                    </ul>
+                </div>
+
+                <div class="use-case-card">
+                    <h3><i class="fas fa-building" style="color: #fbbc04;"></i> Enterprises</h3>
+                    <ul>
+                        <li>Enterprise SSO and advanced security controls</li>
+                        <li>Dedicated infrastructure and SLA guarantees</li>
+                        <li>Custom integrations and priority support</li>
+                        <li>Volume licensing and centralized billing</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Screenshots / Interactive Demo Section -->
+        <section class="section demo-section">
+            <div class="section-header">
+                <span class="section-tag">See it in action</span>
+                <h2 class="section-title">Tour the product</h2>
+                <p class="section-subtitle">
+                    Explore key workflows and features through our interactive product screenshots.
+                </p>
+            </div>
+
+            <div class="carousel-container" role="region" aria-label="Product screenshots carousel">
+                <div class="carousel-track">
+                    <div class="carousel-slide" data-slide="0">
+                        <!-- REPLACE: Actual screenshot -->
+                        <img src="assets/img/screenshot-dashboard.webp"
+                            alt="ScriptFlow main dashboard with project overview and quick actions" width="1000"
+                            height="600" loading="lazy">
+                    </div>
+                    <div class="carousel-slide" data-slide="1">
+                        <img src="assets/img/screenshot-deploy.webp"
+                            alt="Deployment interface showing version history and rollback options" width="1000"
+                            height="600" loading="lazy">
+                    </div>
+                    <div class="carousel-slide" data-slide="2">
+                        <img src="assets/img/screenshot-logs.webp"
+                            alt="Live logs terminal with real-time execution monitoring" width="1000" height="600"
+                            loading="lazy">
+                    </div>
+                    <div class="carousel-slide" data-slide="3">
+                        <img src="assets/img/screenshot-ai-converter.webp"
+                            alt="AI Blueprint Converter interface converting Make.com workflow" width="1000"
+                            height="600" loading="lazy">
+                    </div>
+                </div>
+
+                <button class="carousel-btn carousel-prev" aria-label="Previous screenshot">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <button class="carousel-btn carousel-next" aria-label="Next screenshot"
+                    style="right: 20px; left: auto;">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+
+                <div class="carousel-indicators" role="tablist">
+                    <button class="carousel-indicator active" data-slide="0" aria-label="View screenshot 1" role="tab"
+                        aria-selected="true"></button>
+                    <button class="carousel-indicator" data-slide="1" aria-label="View screenshot 2" role="tab"
+                        aria-selected="false"></button>
+                    <button class="carousel-indicator" data-slide="2" aria-label="View screenshot 3" role="tab"
+                        aria-selected="false"></button>
+                    <button class="carousel-indicator" data-slide="3" aria-label="View screenshot 4" role="tab"
+                        aria-selected="false"></button>
+                </div>
+            </div>
+
+            <p style="margin-top: 20px; text-align: center; color: var(--text-tertiary); font-size: 14px;">
+                <i class="fas fa-expand"></i> Click any screenshot to view full size
+            </p>
+        </section>
+
+        <!-- Pricing Teaser Section -->
+        <section class="section" style="background: var(--bg-secondary);">
+            <div class="section-header">
+                <span class="section-tag">Pricing</span>
+                <h2 class="section-title">Choose your plan</h2>
+                <p class="section-subtitle">
+                    Start free, upgrade when you need more. All plans include core features.
+                </p>
+            </div>
+
+            <div class="pricing-table">
+                <!-- Free Plan -->
+                <div class="pricing-card">
+                    <h3>Free</h3>
+                    <div class="pricing-price">$0<span>/month</span></div>
+                    <p style="color: var(--text-secondary); margin-bottom: 24px;">Perfect for individual developers and
+                        small projects.</p>
+
+                    <ul class="pricing-features">
+                        <li><i class="fas fa-check"></i> Up to 3 Apps Script projects</li>
+                        <li><i class="fas fa-check"></i> Basic version control</li>
+                        <li><i class="fas fa-check"></i> Deploy & sync</li>
+                        <li><i class="fas fa-check"></i> Community support</li>
+                        <li><i class="fas fa-check"></i> Make.com & Zapier monitoring</li>
+                    </ul>
+
+                    <a href="/login?plan=free" class="btn-secondary w-100" data-event-name="pricing_click"
+                        data-plan="free">
+                        Get Started Free <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+
+                <!-- Pro Plan (Featured) -->
+                <div class="pricing-card featured">
+                    <span class="pricing-badge">Most Popular</span>
+                    <h3>Pro</h3>
+                    <div class="pricing-price">$29<span>/month</span></div>
+                    <p style="color: var(--text-secondary); margin-bottom: 24px;">For professionals and growing teams.
+                    </p>
+
+                    <ul class="pricing-features">
+                        <li><i class="fas fa-check"></i> Unlimited Apps Script projects</li>
+                        <li><i class="fas fa-check"></i> Advanced version control & rollbacks</li>
+                        <li><i class="fas fa-check"></i> Live logs & alerts</li>
+                        <li><i class="fas fa-check"></i> Integrated debugger</li>
+                        <li><i class="fas fa-check"></i> AI Blueprint Converter (50 conversions/mo)</li>
+                        <li><i class="fas fa-check"></i> Team collaboration (up to 5 users)</li>
+                        <li><i class="fas fa-check"></i> Priority email support</li>
+                    </ul>
+
+                    <a href="/login?plan=pro" class="btn-cta w-100" data-event-name="pricing_click" data-plan="pro">
+                        Start 14-Day Trial <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+
+                <!-- Enterprise Plan -->
+                <div class="pricing-card">
+                    <h3>Enterprise</h3>
+                    <div class="pricing-price">Custom</div>
+                    <p style="color: var(--text-secondary); margin-bottom: 24px;">Tailored for large organizations with
+                        advanced needs.</p>
+
+                    <ul class="pricing-features">
+                        <li><i class="fas fa-check"></i> Everything in Pro</li>
+                        <li><i class="fas fa-check"></i> Unlimited users & projects</li>
+                        <li><i class="fas fa-check"></i> Enterprise SSO (SAML, OAuth)</li>
+                        <li><i class="fas fa-check"></i> Dedicated infrastructure</li>
+                        <li><i class="fas fa-check"></i> Custom integrations</li>
+                        <li><i class="fas fa-check"></i> SLA guarantees</li>
+                        <li><i class="fas fa-check"></i> Dedicated account manager</li>
+                    </ul>
+
+                    <a href="/login?plan=enterprise" class="btn-secondary w-100" data-event-name="pricing_click"
+                        data-plan="enterprise">
+                        Contact Sales <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+
+            <p style="text-align: center; margin-top: 40px; color: var(--text-secondary);">
+                <a href="/pricing" style="color: var(--brand-blue); font-weight: 500; text-decoration: underline;">
+                    View detailed pricing comparison →
+                </a>
+            </p>
+        </section>
+
+        <!-- Social Proof Section -->
+        <section class="section testimonials-section">
+            <div class="section-header">
+                <span class="section-tag">Trusted by developers</span>
+                <h2 class="section-title">What our users say</h2>
+            </div>
+
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-stars">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
+                            class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <p class="testimonial-text">"ScriptFlow saved us thousands in automation costs. The AI Blueprint
+                        Converter turned our Make.com scenarios into Apps Script in minutes, and we're now running
+                        everything on Google's free tier."</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar"><i class="fas fa-user-circle"></i></div>
+                        <div class="author-info">
+                            <h4>Maria Rodriguez</h4>
+                            <p>Ops Lead @ FastScale</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-stars">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
+                            class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <p class="testimonial-text">"Version control and one-click rollbacks give me the confidence to
+                        deploy to production without anxiety. The unified dashboard is a game-changer for managing
+                        client projects."</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar"><i class="fas fa-user-circle"></i></div>
+                        <div class="author-info">
+                            <h4>James Chen</h4>
+                            <p>Founder @ AutomateHub</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-stars">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
+                            class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <p class="testimonial-text">"As a non-developer, ScriptFlow's visual tools and AI converter let me
+                        build complex automations that previously required a developer. It's empowering and incredibly
+                        intuitive."</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar"><i class="fas fa-user-circle"></i></div>
+                        <div class="author-info">
+                            <h4>Sarah Mitchell</h4>
+                            <p>Product Manager @ TechFlow</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Integration Logos -->
+            <div class="section-header" style="margin-top: 80px; margin-bottom: 20px;">
+                <p class="social-proof-title">Integrates with your favorite tools</p>
+            </div>
+            <div class="integration-logos">
+                <div class="integration-logo">
+                    <i class="fab fa-google" style="color: #4285f4; font-size: 24px;"></i> Google Apps Script
+                </div>
+                <div class="integration-logo">
+                    <span style="font-weight: bold; color: #6D00CC;">make</span>
+                </div>
+                <div class="integration-logo">
+                    <span style="font-weight: bold; color: #FF4A00;">zapier</span>
+                </div>
+                <div class="integration-logo">
+                    <span style="font-weight: bold; color: #EA4B71;">n8n</span>
+                </div>
+                <div class="integration-logo">
+                    <i class="fab fa-slack" style="color: #4A154B; font-size: 24px;"></i> Slack
+                </div>
+                <div class="integration-logo">
+                    <i class="fab fa-github" style="font-size: 24px;"></i> GitHub
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section class="section faq-section">
+            <div class="section-header">
+                <span class="section-tag">Questions?</span>
+                <h2 class="section-title">Frequently Asked Questions</h2>
+            </div>
+
+            <div class="faq-container">
+                <div class="faq-accordion">
+                    <details class="faq-item">
+                        <summary>What makes ScriptFlow different from using CLASP directly?</summary>
+                        <div class="faq-content">
+                            <p>ScriptFlow provides a visual IDE layer on top of CLASP with live logs, version control
+                                UI, integrated debugging, and unified management of both Apps Script and automation
+                                platforms like Make.com and Zapier in one dashboard.</p>
+                        </div>
+                    </details>
+
+                    <details class="faq-item">
+                        <summary>Can I use ScriptFlow with my existing Apps Script projects?</summary>
+                        <div class="faq-content">
+                            <p>Absolutely. ScriptFlow connects to your existing Google Apps Script projects via OAuth.
+                                Import any project and start managing it through our unified dashboard immediately.</p>
+                        </div>
+                    </details>
+
+                    <details class="faq-item">
+                        <summary>Does ScriptFlow support team collaboration?</summary>
+                        <div class="faq-content">
+                            <p>Yes. ScriptFlow Pro and Enterprise plans include team workspaces, shared project access,
+                                role-based permissions, and collaborative debugging features.</p>
+                        </div>
+                    </details>
+
+                    <details class="faq-item">
+                        <summary>How does the AI Blueprint Converter work?</summary>
+                        <div class="faq-content">
+                            <p>Upload a Make.com or n8n workflow blueprint (JSON), and our AI engine analyzes the
+                                nodes, connections, and logic to generate equivalent Google Apps Script code. This
+                                allows you to run workflows on Google's free infrastructure, saving on execution costs.
+                            </p>
+                        </div>
+                    </details>
+
+                    <details class="faq-item">
+                        <summary>Is there a free tier?</summary>
+                        <div class="faq-content">
+                            <p>Yes. ScriptFlow offers a Free tier with basic project limits and core features. It's
+                                perfect for individual developers and small projects.</p>
+                        </div>
+                    </details>
+
+                    <details class="faq-item">
+                        <summary>What integrations does ScriptFlow support?</summary>
+                        <div class="faq-content">
+                            <p>ScriptFlow integrates with Google Apps Script, Make.com, Zapier, n8n, GitHub, Slack, and
+                                supports webhooks for custom integrations.</p>
+                        </div>
+                    </details>
+                </div>
+            </div>
+
+            <p style="text-align: center; margin-top: 40px; color: var(--text-secondary);">
+                Have more questions? <a href="/help-center"
+                    style="color: var(--brand-blue); font-weight: 500; text-decoration: underline;">Visit our Help
+                    Center</a> or <a href="mailto:support@scriptflowapp.space"
+                    style="color: var(--brand-blue); font-weight: 500; text-decoration: underline;">contact
+                    support</a>.
+            </p>
+        </section>
+
+        <!-- Footer CTA Section -->
+        <section class="section" style="background: var(--bg-secondary); text-align: center; padding: 80px 20px;">
+            <h2 class="section-title" style="font-size: 48px; margin-bottom: 20px;">Ready to unify your automation?</h2>
+            <p class="section-subtitle" style="font-size: 20px; margin-bottom: 40px;">
+                Start building with ScriptFlow today. No credit card required.
+            </p>
+            <div style="display: flex; justify-content: center; gap: 16px; flex-wrap: wrap;">
+                <a href="/app" class="btn-cta cta-primary" id="footer-cta-primary"
+                    style="padding: 16px 32px; font-size: 18px;">
+                    Start Free Trial <i class="fas fa-arrow-right"></i>
+                </a>
+                <a href="/docs" class="btn-secondary" style="padding: 16px 32px; font-size: 18px;">
+                    <i class="fas fa-book" style="margin-right: 6px;"></i> View Documentation
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer (reused from landing.html) -->
+    <footer style="padding: 60px 40px; background: var(--bg-surface); border-top: 1px solid var(--border-subtle);">
+        <div style="max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 2fr; gap: 40px;">
+            <div>
+                <div class="nav-brand" style="margin-bottom: 20px;">
+                    <img src="assets/img/logo-light.webp" alt="ScriptFlow Logo" class="logo-light" width="150"
+                        height="53" loading="lazy">
+                    <img src="assets/img/logo-dark.webp" alt="ScriptFlow Logo" class="logo-dark" width="150" height="53"
+                        loading="lazy">
+                </div>
+                <p style="color: var(--text-secondary); font-size: 14px; max-width: 300px;">
+                    Empowering developers to build the future of automation with intuitive tools and powerful
+                    integrations.
+                </p>
+            </div>
+            <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px;">
+                <div>
+                    <h4 style="font-size: 14px; font-weight: 700; margin-bottom: 16px;">Product</h4>
+                    <div style="display: flex; flex-direction: column; gap: 12px;">
+                        <a href="/product"
+                            style="color: var(--text-secondary); text-decoration: none; font-size: 14px;">Features</a>
+                        <a href="/pricing"
+                            style="color: var(--text-secondary); text-decoration: none; font-size: 14px;">Pricing</a>
+                        <a href="/coming-soon"
+                            style="color: var(--text-secondary); text-decoration: none; font-size: 14px;">Changelog</a>
+                    </div>
+                </div>
+                <div>
+                    <h4 style="font-size: 14px; font-weight: 700; margin-bottom: 16px;">Resources</h4>
+                    <div style="display: flex; flex-direction: column; gap: 12px;">
+                        <a href="/docs"
+                            style="color: var(--text-secondary); text-decoration: none; font-size: 14px;">Documentation</a>
+                        <a href="/coming-soon"
+                            style="color: var(--text-secondary); text-decoration: none; font-size: 14px;">Community</a>
+                        <a href="/help-center"
+                            style="color: var(--text-secondary); text-decoration: none; font-size: 14px;">Help
+                            Center</a>
+                    </div>
+                </div>
+                <div>
+                    <h4 style="font-size: 14px; font-weight: 700; margin-bottom: 16px;">Company</h4>
+                    <div style="display: flex; flex-direction: column; gap: 12px;">
+                        <a href="/coming-soon"
+                            style="color: var(--text-secondary); text-decoration: none; font-size: 14px;">About</a>
+                        <a href="/blog-launch"
+                            style="color: var(--text-secondary); text-decoration: none; font-size: 14px;">Blog</a>
+                        <a href="/coming-soon"
+                            style="color: var(--text-secondary); text-decoration: none; font-size: 14px;">Careers</a>
+                    </div>
+                </div>
+                <div>
+                    <h4 style="font-size: 14px; font-weight: 700; margin-bottom: 16px;">Legal</h4>
+                    <div style="display: flex; flex-direction: column; gap: 12px;">
+                        <a href="/privacy"
+                            style="color: var(--text-secondary); text-decoration: none; font-size: 14px;">Privacy
+                            Policy</a>
+                        <a href="/terms"
+                            style="color: var(--text-secondary); text-decoration: none; font-size: 14px;">Terms of
+                            Service</a>
+                        <a href="/cookies"
+                            style="color: var(--text-secondary); text-decoration: none; font-size: 14px;">Cookie
+                            Policy</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div
+            style="max-width: 1200px; margin: 40px auto 0; padding-top: 20px; border-top: 1px solid var(--border-subtle); display: flex; justify-content: space-between; align-items: center;">
+            <p style="color: var(--text-secondary); font-size: 13px;">© 2025 ScriptFlow. All rights reserved.</p>
+            <div style="display: flex; gap: 20px;">
+                <a href="/coming-soon" aria-label="Twitter" style="color: var(--text-secondary); font-size: 16px;"><i
+                        class="fab fa-twitter"></i></a>
+                <a href="/coming-soon" aria-label="GitHub" style="color: var(--text-secondary); font-size: 16px;"><i
+                        class="fab fa-github"></i></a>
+                <a href="/coming-soon" aria-label="Discord" style="color: var(--text-secondary); font-size: 16px;"><i
+                        class="fab fa-discord"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Lightbox for screenshot expansion -->
+    <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Screenshot lightbox">
+        <button class="lightbox-close" aria-label="Close lightbox">&times;</button>
+        <div class="lightbox-content">
+            <img src="" alt="" id="lightbox-img">
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="landing.js" defer></script>
+    <script src="assets/js/product.js" defer></script>
+</body>
+
+</html>

@@ -1,0 +1,1554 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ScriptFlow — Save on Automation Costs with our AI Blueprint Converter</title>
+    <meta name="description"
+        content="Unify Google Apps Script, Make.com, Zapier, and n8n. Save up to 90% on automation costs with our AI Blueprint to Apps Script converter. Try ScriptFlow v2.0.">
+    <link rel="canonical" href="https://scriptflowapp.space/">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="ScriptFlow — Save 90% on Automation Costs">
+    <meta property="og:description"
+        content="Convert Make.com/Zapier blueprints to Google Apps Script automatically. Unified IDE to deploy, monitor and save on workflow operation costs.">
+    <meta property="og:image" content="https://scriptflowapp.space/assets/img/og-image.png">
+    <meta property="og:url" content="https://scriptflowapp.space/">
+    <meta property="og:type" content="website">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@scriptflowapp">
+    <meta name="twitter:title" content="ScriptFlow — Save 90% on Automation Costs">
+    <meta name="twitter:description"
+        content="Stop overpaying for automation. Convert Make.com and Zapier workflows to Apps Script with our AI engine and save on operation costs.">
+    <meta name="twitter:image" content="https://scriptflowapp.space/assets/img/og-image.png">
+
+    <!-- JSON-LD: Organization -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "ScriptFlow",
+      "url": "https://scriptflowapp.space/",
+      "logo": "https://scriptflowapp.space/assets/img/logo-light.webp",
+      "sameAs": [
+        "https://twitter.com/scriptflowapp",
+        "https://github.com/scriptflow"
+      ],
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "contactType": "customer support",
+        "url": "https://scriptflowapp.space/help-center"
+      }
+    }
+    </script>
+
+    <!-- JSON-LD: SoftwareApplication -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "ScriptFlow",
+      "url": "https://scriptflowapp.space/",
+      "applicationCategory": "DeveloperApplication",
+      "operatingSystem": "Web",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "5",
+        "ratingCount": "2"
+      },
+      "description": "Unify Google Apps Script and automation workflows. Save on operation costs with AI-powered Blueprint to Apps Script conversion."
+    }
+    </script>
+
+    <!-- JSON-LD: FAQPage -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Is ScriptFlow free to use?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes, ScriptFlow offers a free tier for individual developers with basic limits, allowing you to manage a limited number of projects."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Does it work with existing Apps Script projects?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Absolutely. You can import your existing Google Apps Script projects and manage them directly through our dashboard."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can I deploy to multiple environments?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes, ScriptFlow supports deploying to development, staging, and production environments seamlessly, integrating with standard CLASP workflows."
+          }
+        }
+        {
+          "@type": "Question",
+          "name": "How can ScriptFlow help me save on automation costs?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "ScriptFlow includes an AI-powered converter that transforms Make.com and Zapier blueprints into Google Apps Script. This allows you to run your workflows on Google's infrastructure for free, saving you significant operation costs."
+          }
+        }
+      ]
+    }
+    </script>
+
+
+    <!-- GTM Container ID (loaded by cookie-consent.js after user consent) -->
+    <script>window.GA4_MEASUREMENT_ID = "G-PZ1SQN4MRY"; window.GTM_CONTAINER_ID = 'GTM-XXXXXXX';</script>
+    <!-- Cookie Consent & Analytics (GDPR compliant - loads GTM after consent) -->
+    <script src="cookie-consent.js" defer></script>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;700&family=Inter:wght@400;500;600&display=swap"
+        rel="stylesheet">
+
+    <!-- Icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"
+        media="print" onload="this.media='all'">
+    <noscript>
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    </noscript>
+    <link rel="icon" type="image/webp" sizes="32x32" href="assets/img/favicon.webp">
+
+    <!-- Styles -->
+    <style>
+        /* Global Reset */
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+        }
+
+        :root {
+            /* Brand Colors matching Antigravity screenshots */
+            --brand-dark: #202124;
+            /* Keep for reference/gradients */
+            --brand-gray: #5f6368;
+            --brand-light-gray: #f8f9fa;
+            --brand-blue: #4285f4;
+            --brand-google-blue: #1a73e8;
+            --brand-google-red: #ea4335;
+            --brand-google-yellow: #fbbc04;
+            --brand-google-green: #34a853;
+
+            /* Semantic Variables - Light Mode (Default) */
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8f9fa;
+            --bg-surface: #ffffff;
+            --bg-nav: rgba(255, 255, 255, 0.95);
+
+            --text-primary: #202124;
+            --text-secondary: #5f6368;
+            --text-tertiary: #80868b;
+            --text-inverse: #ffffff;
+
+            --border-subtle: #f1f3f4;
+            --border-strong: #dadce0;
+
+            --shadow-nav: rgba(0, 0, 0, 0.05);
+            --shadow-card: rgba(0, 0, 0, 0.08);
+
+            /* Animation Timing */
+            --ease-elastic: cubic-bezier(0.68, -0.6, 0.32, 1.6);
+        }
+
+        @media (prefers-color-scheme: dark) {
+            :root {
+                /* Semantic Variables - Dark Mode */
+                --bg-primary: #171717;
+                --bg-secondary: #202124;
+                --bg-surface: #202124;
+                --bg-nav: rgba(23, 23, 23, 0.95);
+
+                --text-primary: #e8eaed;
+                --text-secondary: #9aa0a6;
+                --text-tertiary: #80868b;
+                --text-inverse: #202124;
+
+                --border-subtle: #3c4043;
+                --border-strong: #5f6368;
+
+                --shadow-nav: rgba(0, 0, 0, 0.4);
+                --shadow-card: rgba(0, 0, 0, 0.3);
+            }
+        }
+
+        /* Base resets for landing page content */
+        body.landing-page {
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            font-family: 'Google Sans', 'Inter', system-ui, -apple-system, sans-serif;
+            overflow-y: auto;
+            /* Enable scroll for landing page */
+            overflow-x: hidden;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        /* Typography Overrides */
+        .landing-page h1,
+        .landing-page h2,
+        .landing-page h3,
+        .landing-page h4 {
+            font-family: 'Google Sans', 'Inter', sans-serif;
+            letter-spacing: -0.5px;
+            color: var(--text-primary);
+        }
+
+        /* Navigation - Floating / Glass */
+        .landing-nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 40px;
+            background: var(--bg-nav);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            transition: all 0.3s ease;
+            border-bottom: 1px solid var(--border-subtle);
+        }
+
+        .landing-nav.scrolled {
+            box-shadow: 0 4px 20px var(--shadow-nav);
+            height: 70px;
+        }
+
+        .nav-brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            color: var(--text-primary);
+            font-weight: 500;
+            font-size: 20px;
+        }
+
+        .nav-brand img {
+            height: 40px;
+            width: auto;
+        }
+
+        /* Theme-based logo switching */
+        .logo-light {
+            display: block;
+        }
+
+        .logo-dark {
+            display: none;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            .logo-light {
+                display: none;
+            }
+
+            .logo-dark {
+                display: block;
+                filter: drop-shadow(0 0 2px rgba(255, 255, 255, 0.3));
+            }
+        }
+
+        /* Menu Items */
+        .nav-menu {
+            display: flex;
+            gap: 8px;
+            margin-left: 40px;
+            flex: 1;
+        }
+
+        .nav-link-item {
+            position: relative;
+            padding: 10px 16px;
+            color: var(--text-secondary);
+            font-size: 15px;
+            font-weight: 500;
+            text-decoration: none;
+            border-radius: 20px;
+            transition: color 0.2s, background 0.2s;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .nav-link-item:hover,
+        .nav-link-item.active {
+            color: var(--text-primary);
+            background: var(--border-subtle);
+            /* Subtle weight increase without layout shift using text-shadow or letter-spacing trick
+       For Variable fonts we'd use font-variation-settings, but standard fonts: */
+            text-shadow: 0 0 .65px var(--text-primary), 0 0 .65px var(--text-primary);
+        }
+
+        .nav-link-item:active,
+        .btn-cta:active,
+        .btn-secondary:active,
+        .feature-card:active {
+            transform: scale(0.98);
+        }
+
+        .nav-link-item i {
+            font-size: 10px;
+            transition: transform 0.3s ease;
+            margin-top: 1px;
+        }
+
+        .nav-link-item:hover i {
+            transform: rotate(180deg);
+        }
+
+        /* Mega Menu Dropdowns */
+        .submenu-container {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 280px;
+            /* Glass Effect */
+            background: rgba(255, 255, 255, 0.75);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-radius: 16px;
+            box-shadow: 0 10px 40px var(--shadow-card), 0 2px 5px var(--shadow-nav);
+            padding: 16px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+            z-index: 1001;
+            margin-top: 10px;
+            border: 1px solid var(--border-subtle);
+        }
+
+        @media (prefers-color-scheme: dark) {
+            .submenu-container {
+                background: rgba(32, 33, 36, 0.7);
+                border: 1px solid rgba(255, 255, 255, 0.08);
+                box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+            }
+        }
+
+        .nav-link-item:hover .submenu-container {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .submenu-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            padding: 12px;
+            text-decoration: none;
+            border-radius: 8px;
+            transition: background 0.2s;
+        }
+
+        .submenu-item:hover {
+            background: var(--bg-secondary);
+        }
+
+        .submenu-icon {
+            width: 32px;
+            height: 32px;
+            background: rgba(66, 133, 244, 0.1);
+            /* Keep brand tint */
+            color: var(--brand-blue);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            flex-shrink: 0;
+        }
+
+        .submenu-text h4 {
+            margin: 0;
+            font-size: 14px;
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+
+        .submenu-text p {
+            margin: 4px 0 0;
+            font-size: 12px;
+            color: var(--text-secondary);
+            line-height: 1.4;
+        }
+
+        /* Nav Actions */
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .btn-cta {
+            background: var(--text-primary);
+            /* Inverts in dark mode */
+            color: var(--bg-primary);
+            /* Inverts in dark mode */
+            padding: 10px 24px;
+            border-radius: 24px;
+            font-size: 15px;
+            font-weight: 500;
+            text-decoration: none;
+            transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
+            border: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-cta:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px var(--shadow-nav);
+            opacity: 0.9;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            padding: 160px 20px 80px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            background: radial-gradient(circle at 15% 50%, rgba(66, 133, 244, 0.08) 0%, transparent 25%),
+                radial-gradient(circle at 85% 30%, rgba(234, 67, 53, 0.08) 0%, transparent 25%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Particle Background */
+        #particle-background {
+            position: absolute;
+            inset: 0;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        #hero-particles-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            /* Dimensions controlled by JavaScript to prevent stretching */
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .hero-particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: radial-gradient(var(--border-strong) 1.5px, transparent 1.5px);
+            background-size: 40px 40px;
+            opacity: 0.15;
+            /* Reduced opacity to let canvas pop */
+            z-index: 0;
+            mask-image: radial-gradient(circle at center, black 40%, transparent 80%);
+            -webkit-mask-image: radial-gradient(circle at center, black 40%, transparent 80%);
+        }
+
+        .hero>* {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            background: var(--bg-surface);
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--text-secondary);
+            box-shadow: 0 2px 10px var(--shadow-nav);
+            margin-bottom: 32px;
+            border: 1px solid var(--border-subtle);
+            animation: fadeInDown 0.8s ease-out;
+        }
+
+        .hero-badge img {
+            width: 16px;
+            height: auto;
+        }
+
+        .hero-title {
+            font-size: 72px;
+            line-height: 1.1;
+            font-weight: 700;
+            letter-spacing: -2px;
+            margin-bottom: 24px;
+            background: linear-gradient(180deg, var(--text-primary) 0%, var(--text-secondary) 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            max-width: 900px;
+            animation: fadeInUp 0.8s ease-out 0.2s backwards;
+        }
+
+        .hero-subtitle {
+            font-size: 20px;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin-bottom: 40px;
+            line-height: 1.6;
+            animation: fadeInUp 0.8s ease-out 0.4s backwards;
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: 16px;
+            animation: fadeInUp 0.8s ease-out 0.6s backwards;
+        }
+
+        /* V-Shape Sales Copy Structure */
+        .v-shape-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            max-width: 1000px;
+            margin: 60px auto 40px;
+            animation: fadeInUp 0.8s ease-out 0.5s backwards;
+        }
+
+        @media (max-width: 768px) {
+            .v-shape-container {
+                grid-template-columns: 1fr;
+                gap: 40px;
+                margin: 40px auto 30px;
+            }
+        }
+
+        .v-shape-section {
+            background: var(--bg-surface);
+            border-radius: 24px;
+            padding: 40px;
+            border: 1px solid var(--border-subtle);
+            box-shadow: 0 10px 30px var(--shadow-card);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .v-shape-section::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, transparent, var(--brand-blue), transparent);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .v-shape-section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px var(--shadow-card);
+        }
+
+        .v-shape-section:hover::before {
+            opacity: 1;
+        }
+
+        .conflict-section {
+            border-left: 4px solid var(--brand-google-red);
+        }
+
+        .conflict-section:hover {
+            border-left-color: var(--brand-google-red);
+            box-shadow: 0 20px 40px rgba(234, 67, 53, 0.15);
+        }
+
+        .solution-section {
+            border-left: 4px solid var(--brand-google-green);
+        }
+
+        .solution-section:hover {
+            border-left-color: var(--brand-google-green);
+            box-shadow: 0 20px 40px rgba(52, 168, 83, 0.15);
+        }
+
+        .v-shape-icon {
+            width: 64px;
+            height: 64px;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            margin-bottom: 24px;
+            transition: transform 0.3s ease;
+        }
+
+        .conflict-icon {
+            background: rgba(234, 67, 53, 0.1);
+            color: var(--brand-google-red);
+        }
+
+        .solution-icon {
+            background: rgba(52, 168, 83, 0.1);
+            color: var(--brand-google-green);
+        }
+
+        .v-shape-section:hover .v-shape-icon {
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        .v-shape-title {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 16px;
+            letter-spacing: -0.5px;
+        }
+
+        .v-shape-content {
+            font-size: 18px;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin: 0;
+        }
+
+        .v-shape-content strong {
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+
+        .btn-secondary {
+            background: var(--bg-secondary);
+            color: var(--text-primary);
+            padding: 12px 28px;
+            border-radius: 24px;
+            font-size: 16px;
+            font-weight: 500;
+            text-decoration: none;
+            transition: all 0.2s;
+            border: 1px solid transparent;
+        }
+
+        .btn-secondary:hover {
+            background: var(--border-subtle);
+            border-color: var(--border-strong);
+        }
+
+        /* Features Grid */
+        .section {
+            padding: 100px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-tag {
+            text-transform: uppercase;
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--brand-blue);
+            letter-spacing: 1px;
+            margin-bottom: 12px;
+            display: block;
+        }
+
+        .section-title {
+            font-size: 42px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 16px;
+            letter-spacing: -1px;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+        }
+
+        @media (max-width: 1100px) {
+            .features-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 600px) {
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .feature-card {
+            background: var(--bg-surface);
+            border-radius: 24px;
+            padding: 32px;
+            border: 1px solid var(--border-subtle);
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            overflow: hidden;
+            /* Contain the spotlight */
+        }
+
+        /* Spotlight Glow Overlay */
+        .feature-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(600px circle at var(--mouse-x, 0) var(--mouse-y, 0),
+                    rgba(66, 133, 244, 0.06),
+                    transparent 40%);
+            opacity: 0;
+            transition: opacity 0.5s;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .feature-card:hover::before {
+            opacity: 1;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px var(--shadow-card);
+            /* Border color change handled by spotlight mainly, but keeping subtle base */
+            border-color: rgba(66, 133, 244, 0.2);
+        }
+
+        .feature-icon-wrapper {
+            width: 56px;
+            height: 56px;
+            border-radius: 16px;
+            background: var(--bg-secondary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 24px;
+            font-size: 24px;
+            color: var(--text-primary);
+        }
+
+        .feature-card h3 {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 12px;
+            color: var(--text-primary);
+        }
+
+        .feature-card p {
+            color: var(--text-secondary);
+            line-height: 1.6;
+            margin-bottom: 24px;
+            flex-grow: 1;
+        }
+
+        .feature-link {
+            color: var(--brand-blue);
+            font-weight: 500;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .feature-link:hover {
+            text-decoration: underline;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 42px;
+            }
+
+            .nav-menu {
+                display: none;
+                /* Simple hiding for first iteration */
+            }
+
+        }
+
+        /* Social Proof Section */
+        .social-proof-section {
+            padding: 40px 20px;
+            background: var(--bg-surface);
+            border-bottom: 1px solid var(--border-subtle);
+            text-align: center;
+        }
+
+        .social-proof-title {
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--text-tertiary);
+            margin-bottom: 24px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .logo-grid {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .partner-logo {
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            transition: all 0.3s;
+            cursor: default;
+        }
+
+        .partner-logo:hover {
+            filter: grayscale(100%);
+            opacity: 0.7;
+            transform: translateY(-1px);
+        }
+
+        /* Demo Section */
+        .demo-section {
+            text-align: center;
+            background: radial-gradient(circle at center, var(--bg-surface) 0%, var(--bg-secondary) 100%);
+        }
+
+        .section-subtitle {
+            font-size: 18px;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto 40px;
+            line-height: 1.6;
+        }
+
+        .video-container {
+            max-width: 900px;
+            margin: 0 auto 60px;
+            aspect-ratio: 16/9;
+            background: #000;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px var(--shadow-card);
+            overflow: hidden;
+            position: relative;
+            border: 1px solid var(--border-subtle);
+        }
+
+        .video-placeholder {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(45deg, #202124, #3c4043);
+            color: white;
+        }
+
+        .play-button {
+            width: 80px;
+            height: 80px;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            margin-bottom: 16px;
+            cursor: pointer;
+            transition: transform 0.2s, background 0.2s;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .play-button:hover {
+            transform: scale(1.1);
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        .play-button i {
+            margin-left: 4px;
+            /* Optical adjustment */
+        }
+
+        .screenshots-grid-container {
+            display: flex;
+            justify-content: center;
+            gap: 32px;
+            flex-wrap: wrap;
+        }
+
+        .screenshot-item {
+            background: var(--bg-surface);
+            padding: 16px;
+            border-radius: 16px;
+            border: 1px solid var(--border-subtle);
+            box-shadow: 0 10px 30px var(--shadow-card);
+            max-width: 400px;
+            width: 100%;
+        }
+
+        .app-screenshot {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            border: 1px solid var(--border-subtle);
+        }
+
+        .caption {
+            margin-top: 12px;
+            color: var(--text-secondary);
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        /* Testimonials Section */
+        .testimonials-section {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 32px;
+            margin-top: 40px;
+        }
+
+        .testimonial-card {
+            background: var(--bg-surface);
+            padding: 32px;
+            border-radius: 20px;
+            border: 1px solid var(--border-subtle);
+            box-shadow: 0 4px 20px var(--shadow-card);
+        }
+
+        .testimonial-stars {
+            color: var(--brand-google-yellow);
+            margin-bottom: 20px;
+            font-size: 14px;
+        }
+
+        .testimonial-text {
+            font-size: 16px;
+            color: var(--text-primary);
+            line-height: 1.6;
+            font-style: italic;
+            margin-bottom: 24px;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .author-avatar {
+            width: 40px;
+            height: 40px;
+            background: var(--bg-secondary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-tertiary);
+            font-size: 20px;
+        }
+
+        .author-info h4 {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin: 0;
+        }
+
+        .author-info p {
+            font-size: 12px;
+            color: var(--text-secondary);
+            margin: 2px 0 0;
+        }
+
+        /* FAQ Section */
+        .faq-section {
+            background: var(--bg-surface);
+        }
+
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            border-bottom: 1px solid var(--border-subtle);
+            margin-bottom: 16px;
+            padding-bottom: 16px;
+        }
+
+        .faq-item:last-child {
+            border-bottom: none;
+        }
+
+        .faq-item summary {
+            font-size: 18px;
+            font-weight: 500;
+            color: var(--text-primary);
+            cursor: pointer;
+            padding: 12px 0;
+            list-style: none;
+            /* Hide default triangle */
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: color 0.2s;
+        }
+
+        .faq-item summary:hover {
+            color: var(--brand-blue);
+        }
+
+        /* Custom indicator for summary */
+        .faq-item summary::-webkit-details-marker {
+            display: none;
+        }
+
+        .faq-item summary::after {
+            content: '+';
+            font-size: 24px;
+            font-weight: 400;
+            color: var(--text-tertiary);
+            transition: transform 0.2s;
+        }
+
+        .faq-item[open] summary::after {
+            transform: rotate(45deg);
+        }
+
+        .faq-content {
+            color: var(--text-secondary);
+            line-height: 1.6;
+            padding: 8px 0 16px;
+            font-size: 16px;
+            animation: fadeIn 0.3s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-5px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .logo-grid {
+                gap: 20px;
+            }
+
+            .video-container {
+                border-radius: 12px;
+            }
+
+            .play-button {
+                width: 60px;
+                height: 60px;
+                font-size: 24px;
+            }
+        }
+    </style>
+    <!-- Theme Script -->
+    <script>
+        (function () {
+            const savedTheme = localStorage.getItem('ui-theme') || 'system';
+            document.documentElement.setAttribute('data-theme', savedTheme);
+        })();
+    </script>
+
+    <!-- Auth Check -->
+    <script src="auth.js" defer></script>
+    <script>
+        // Update UI based on auth state
+        document.addEventListener('DOMContentLoaded', () => {
+            const isAuth = AuthManager.isAuthenticated();
+            const ctaButtons = document.querySelectorAll('.btn-cta');
+
+            ctaButtons.forEach(btn => {
+                // If button points to /app, it's a main CTA
+                if (btn.getAttribute('href') === '/app') {
+                    if (isAuth) {
+                        btn.innerHTML = 'Go to Dashboard <i class="fas fa-arrow-right"></i>';
+                    } else {
+                        btn.innerHTML = 'Get Started Free <i class="fas fa-arrow-right"></i>';
+                        btn.href = '/login';
+                    }
+                }
+            });
+
+            // Update Nav CTA
+            const navCta = document.querySelector('.nav-cta');
+            if (navCta) {
+                if (isAuth) {
+                    navCta.textContent = 'Dashboard';
+                    navCta.href = '/app';
+                } else {
+                    navCta.textContent = 'Sign In';
+                    navCta.href = '/login';
+                }
+            }
+        });
+    </script>
+</head>
+
+<body class="landing-page">
+    <!-- GTM noscript removed: consent required before loading analytics -->
+
+    <!-- Navigation -->
+    <nav class="landing-nav">
+        <a href="/" class="nav-brand">
+            <img src="assets/img/logo-light.webp" alt="ScriptFlow Logo" class="logo-light" width="150" height="53">
+            <img src="assets/img/logo-dark.webp" alt="ScriptFlow Logo" class="logo-dark" width="150" height="53">
+        </a>
+
+        <div class="nav-menu">
+            <a href="/product" class="nav-link-item">Product</a>
+
+            <div class="nav-link-item">
+                Use Cases <i class="fas fa-chevron-down"></i>
+                <!-- Dropdown Menu -->
+                <div class="submenu-container">
+                    <a href="/product#developers" class="submenu-item">
+                        <div class="submenu-icon"><i class="fas fa-laptop-code"></i></div>
+                        <div class="submenu-text">
+                            <h4>Professional Dev</h4>
+                            <p>Advanced tools for power users</p>
+                        </div>
+                    </a>
+                    <a href="/product#ops" class="submenu-item">
+                        <div class="submenu-icon"><i class="fas fa-layer-group"></i></div>
+                        <div class="submenu-text">
+                            <h4>Fullstack</h4>
+                            <p>End-to-end application building</p>
+                        </div>
+                    </a>
+                    <a href="/product#agencies" class="submenu-item">
+                        <div class="submenu-icon"><i class="fas fa-database"></i></div>
+                        <div class="submenu-text">
+                            <h4>Data Integration</h4>
+                            <p>Connect Sheets, BigQuery & APIs</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <a href="#features" class="nav-link-item">Features</a>
+
+            <div class="nav-link-item">
+                Resources <i class="fas fa-chevron-down"></i>
+                <!-- Dropdown Menu -->
+                <div class="submenu-container">
+                    <a href="/docs" class="submenu-item">
+                        <div class="submenu-icon"><i class="fas fa-book"></i></div>
+                        <div class="submenu-text">
+                            <h4>Documentation</h4>
+                            <p>Guides, API references & more</p>
+                        </div>
+                    </a>
+                    <a href="/coming-soon" class="submenu-item">
+                        <div class="submenu-icon"><i class="fas fa-video"></i></div>
+                        <div class="submenu-text">
+                            <h4>Tutorials</h4>
+                            <p>Step-by-step video courses</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <a href="/pricing" class="nav-link-item">Pricing</a>
+        </div>
+
+        <div class="nav-actions">
+            <a href="/app" class="btn-cta" id="nav-cta">
+                Access ScriptFlow <i class="fas fa-arrow-right"></i>
+            </a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div id="particle-background">
+            <canvas id="hero-particles-canvas"></canvas>
+            <div class="hero-particles"></div>
+        </div>
+
+        <!-- Hero Headline (Top of V) -->
+        <h1 class="hero-title" id="hero-headline">
+            February 2026 Google Ads Migration:<br>
+            Automate your Call-Only transition in 60 seconds.
+        </h1>
+
+        <!-- V-Shape Sales Copy Structure -->
+        <div class="v-shape-container">
+            <!-- The Conflict (Left side of V) -->
+            <div class="v-shape-section conflict-section">
+                <div class="v-shape-icon conflict-icon">
+                    <i class="fas fa-exclamation-triangle"></i>
+                </div>
+                <h2 class="v-shape-title">The Conflict</h2>
+                <p class="v-shape-content">
+                    Google is sunsetting Call-Only ad creation. Your team shouldn't have to manually rebuild hundreds of
+                    ads.
+                </p>
+            </div>
+
+            <!-- The Solution (Right side of V) -->
+            <div class="v-shape-section solution-section">
+                <div class="v-shape-icon solution-icon">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <h2 class="v-shape-title">The Solution</h2>
+                <p class="v-shape-content">
+                    <strong>The ScriptFlow Migration Suite:</strong> 1:1 RSA Migration + The 2026 Budget Shield.
+                </p>
+            </div>
+        </div>
+
+        <!-- Call to Action (Bottom of V) -->
+        <div class="hero-actions">
+            <a href="https://calendly.com" target="_blank" class="btn-cta" id="hero-cta-primary"
+                style="padding: 16px 32px; font-size: 18px;">
+                Book a Free MCC Audit <i class="fas fa-calendar-check"></i>
+            </a>
+        </div>
+    </section>
+
+
+    <!-- Demo / Video Section -->
+    <section class="section demo-section">
+        <div class="section-header">
+            <span class="section-tag">See it in Action</span>
+            <h2 class="section-title">Automate faster than ever</h2>
+            <p class="section-subtitle">
+                Watch how ScriptFlow unifies your entire automation stack in one cohesive interface.
+            </p>
+        </div>
+        <div class="video-container">
+            <div class="video-placeholder" style="background: linear-gradient(135deg, #171717 0%, #2c2c2c 100%);">
+                <div class="play-button">
+                    <i class="fas fa-play"></i>
+                </div>
+                <p style="font-size: 18px; font-weight: 500; margin-bottom: 8px;">Watch ScriptFlow in Action</p>
+                <p style="font-size: 14px; color: var(--text-tertiary);">2:30 minute walkthrough • High Quality</p>
+            </div>
+        </div>
+        <p style="margin-top: -40px; margin-bottom: 60px; color: var(--text-tertiary); font-size: 14px;">
+            <i class="fas fa-closed-captioning"></i> Captions available in English, Spanish, and French
+        </p>
+
+        <div class="screenshots-grid-container">
+            <div class="screenshot-item">
+                <img src="assets/img/dashboard-preview.webp" alt="ScriptFlow Dashboard" class="app-screenshot"
+                    width="400" height="250" loading="lazy">
+                <p class="caption">Unified Dashboard</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="section">
+        <div class="section-header">
+            <span class="section-tag">Powerful Features</span>
+            <h2 class="section-title">Everything you need to stay up-to-date</h2>
+            <p style="color:var(--brand-gray); max-width: 600px; margin: 0 auto;">
+                ScriptFlow simplifies the complexity of modern automation development with tools designed for speed and
+                reliability.
+            </p>
+        </div>
+
+        <div class="features-grid">
+            <!-- Feature 1 -->
+            <div class="feature-card">
+                <div class="feature-icon-wrapper">
+                    <i class="fab fa-google" style="color:#4285f4"></i>
+                </div>
+                <h3>Apps Script Integration</h3>
+                <p>Deploy, manage, and monitor your Google Apps Script projects directly from a modern dashboard without
+                    leaving your workflow.</p>
+                <a href="/product#features" class="feature-link">Learn more <i class="fas fa-arrow-right"
+                        style="font-size:12px"></i></a>
+            </div>
+
+            <!-- Feature 2 -->
+            <div class="feature-card">
+                <div class="feature-icon-wrapper">
+                    <i class="fas fa-robot" style="color:#8b5cf6"></i>
+                </div>
+                <h3>Multi-Platform Automation</h3>
+                <p>Connect and manage workflows across Make.com, Zapier, and n8n. Track execution history, errors, and
+                    optimize your
+                    automation logic efficiently.</p>
+                <a href="/product#features" class="feature-link">Explore integration <i class="fas fa-arrow-right"
+                        style="font-size:12px"></i></a>
+            </div>
+
+            <!-- Feature 3 -->
+            <div class="feature-card">
+                <div class="feature-icon-wrapper">
+                    <i class="fas fa-magic" style="color:#ea4335"></i>
+                </div>
+                <h3>AI Blueprint Converter</h3>
+                <p>Convert Make/N8n workflows to Google Apps Script instantly. Save heavily on execution credits and run
+                    serverless for free.</p>
+                <a href="/product#features" class="feature-link">See how it works <i class="fas fa-arrow-right"
+                        style="font-size:12px"></i></a>
+            </div>
+
+            <!-- Feature 4 -->
+            <div class="feature-card">
+                <div class="feature-icon-wrapper">
+                    <i class="fas fa-bolt" style="color:#fbbc04"></i>
+                </div>
+                <h3>Instant Deployment</h3>
+                <p>Push changes to production in seconds with CLASP integration. Rollback capabilities ensure your
+                    critical business logic is safe.</p>
+                <a href="/docs" class="feature-link">View documentation <i class="fas fa-arrow-right"
+                        style="font-size:12px"></i></a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="section testimonials-section" style="background-color: var(--bg-secondary);">
+        <div class="section-header">
+            <h2 class="section-title">Loved by Developers</h2>
+            <div
+                style="display: flex; justify-content: center; gap: 40px; flex-wrap: wrap; align-items: center; margin-top: 24px;">
+                <div style="text-align: center;">
+                    <div style="color: var(--brand-google-yellow); font-size: 16px; margin-bottom: 4px;"><i
+                            class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
+                            class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                    <p style="font-size: 14px; color: var(--text-secondary); margin: 0;">5.0 Rating</p>
+                </div>
+                <div style="text-align: center;">
+                    <p style="font-size: 28px; font-weight: 700; color: var(--text-primary); margin: 0;">500+</p>
+                    <p style="font-size: 14px; color: var(--text-secondary); margin: 0;">Developers</p>
+                </div>
+                <div style="text-align: center;">
+                    <p style="font-size: 28px; font-weight: 700; color: var(--text-primary); margin: 0;">10K+</p>
+                    <p style="font-size: 14px; color: var(--text-secondary); margin: 0;">Deployments</p>
+                </div>
+            </div>
+        </div>
+        <div class="testimonials-grid">
+            <div class="testimonial-card">
+                <div class="testimonial-stars">
+                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
+                        class="fas fa-star"></i><i class="fas fa-star"></i>
+                </div>
+                <p class="testimonial-text">"ScriptFlow completely transformed how we manage our internal tools. The
+                    CLASP integration is flawless."</p>
+                <div class="testimonial-author">
+                    <div class="author-avatar"><i class="fas fa-user-circle"></i></div>
+                    <div class="author-info">
+                        <h4>Alex Chen</h4>
+                        <p>SeniorDev @ TechCorp</p>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-card">
+                <div class="testimonial-stars">
+                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
+                        class="fas fa-star"></i><i class="fas fa-star"></i>
+                </div>
+                <p class="testimonial-text">"Finally, a way to visualize my Make.com scenarios alongside my Apps
+                    Scripts. A game changer."</p>
+                <div class="testimonial-author">
+                    <div class="author-avatar"><i class="fas fa-user-circle"></i></div>
+                    <div class="author-info">
+                        <h4>Sarah Jones</h4>
+                        <p>Automation Engineer</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="section faq-section">
+        <div class="section-header">
+            <h2 class="section-title">Frequently Asked Questions</h2>
+        </div>
+        <div class="faq-container">
+            <details class="faq-item">
+                <summary>Is ScriptFlow free to use?</summary>
+                <div class="faq-content">
+                    <p>Yes, ScriptFlow offers a free tier for individual developers with basic limits, allowing you to
+                        manage a limited number of projects.</p>
+                </div>
+            </details>
+            <details class="faq-item">
+                <summary>Does it work with existing Apps Script projects?</summary>
+                <div class="faq-content">
+                    <p>Absolutely. You can import your existing Google Apps Script projects and manage them directly
+                        through our dashboard.</p>
+                </div>
+            </details>
+            <details class="faq-item">
+                <summary>Can I deploy to multiple environments?</summary>
+                <div class="faq-content">
+                    <p>Yes, ScriptFlow supports deploying to development, staging, and production environments
+                        seamlessly, integrating with standard CLASP workflows.</p>
+                </div>
+            </details>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer style="padding: 60px 40px; background: var(--bg-secondary); border-top: 1px solid var(--border-subtle);">
+        <div style="max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 2fr; gap: 40px;">
+            <div>
+                <div class="nav-brand" style="margin-bottom: 20px;">
+                    <img src="assets/img/logo-light.webp" alt="ScriptFlow Logo" class="logo-light" width="150"
+                        height="53" loading="lazy">
+                    <img src="assets/img/logo-dark.webp" alt="ScriptFlow Logo" class="logo-dark" width="150" height="53"
+                        loading="lazy">
+                </div>
+                <p style="color: var(--text-secondary); font-size: 14px; max-width: 300px;">
+                    Empowering developers to build the future of automation with intuitive tools and powerful
+                    integrations.
+                </p>
+            </div>
+            <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px;">
+                <div>
+                    <h4 style="font-size: 14px; font-weight: 700; margin-bottom: 16px;">Product</h4>
+                    <div style="display: flex; flex-direction: column; gap: 12px;">
+                        <a href="/product#features"
+                            style="color: var(--text-secondary); text-decoration: none; font-size: 14px;">Features</a>
+                        <a href="/coming-soon"
+                            style="color: var(--text-secondary); text-decoration: none; font-size: 14px;">Integrations</a>
+                        <a href="/coming-soon"
+                            style="color: var(--text-secondary); text-decoration: none; font-size: 14px;">Changelog</a>
+                    </div>
+                </div>
+                <div>
+                    <h4 style="font-size: 14px; font-weight: 700; margin-bottom: 16px;">Resources</h4>
+                    <div style="display: flex; flex-direction: column; gap: 12px;">
+                        <a href="/docs"
+                            style="color: var(--text-secondary); text-decoration: none; font-size: 14px;">Documentation</a>
+                        <a href="/coming-soon"
+                            style="color: var(--text-secondary); text-decoration: none; font-size: 14px;">Community</a>
+                        <a href="/help-center"
+                            style="color: var(--text-secondary); text-decoration: none; font-size: 14px;">Help
+                            Center</a>
+                    </div>
+                </div>
+                <div>
+                    <h4 style="font-size: 14px; font-weight: 700; margin-bottom: 16px;">Company</h4>
+                    <div style="display: flex; flex-direction: column; gap: 12px;">
+                        <a href="/coming-soon"
+                            style="color: var(--text-secondary); text-decoration: none; font-size: 14px;">About</a>
+                        <a href="/blog-launch"
+                            style="color: var(--text-secondary); text-decoration: none; font-size: 14px;">Blog</a>
+                        <a href="/coming-soon"
+                            style="color: var(--text-secondary); text-decoration: none; font-size: 14px;">Careers</a>
+                    </div>
+                </div>
+                <div>
+                    <h4 style="font-size: 14px; font-weight: 700; margin-bottom: 16px;">Legal</h4>
+                    <div style="display: flex; flex-direction: column; gap: 12px;">
+                        <a href="/privacy"
+                            style="color: var(--text-secondary); text-decoration: none; font-size: 14px;">Privacy
+                            Policy</a>
+                        <a href="/terms"
+                            style="color: var(--text-secondary); text-decoration: none; font-size: 14px;">Terms of
+                            Service</a>
+                        <a href="/cookies"
+                            style="color: var(--text-secondary); text-decoration: none; font-size: 14px;">Cookie
+                            Policy</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div
+            style="max-width: 1200px; margin: 40px auto 0; padding-top: 20px; border-top: 1px solid var(--border-subtle); display: flex; justify-content: space-between; align-items: center;">
+            <p style="color: var(--text-secondary); font-size: 13px;">© 2025 ScriptFlow. All rights reserved.</p>
+            <div style="display: flex; gap: 20px;">
+                <a href="/coming-soon" aria-label="Twitter" style="color: var(--text-secondary); font-size: 16px;"><i
+                        class="fab fa-twitter"></i></a>
+                <a href="/coming-soon" aria-label="GitHub" style="color: var(--text-secondary); font-size: 16px;"><i
+                        class="fab fa-github"></i></a>
+                <a href="/coming-soon" aria-label="Discord" style="color: var(--text-secondary); font-size: 16px;"><i
+                        class="fab fa-discord"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="landing.js" defer></script>
+</body>
+
+</html>

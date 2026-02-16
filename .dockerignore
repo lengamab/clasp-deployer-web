@@ -1,0 +1,39 @@
+# Node modules (will be installed in container)
+node_modules/
+npm-debug.log
+
+# Git files
+.git/
+.gitignore
+
+# Documentation
+*.md
+README*
+
+# Test files
+test/
+*.test.js
+
+# Development files
+.env
+.env.local
+.DS_Store
+
+# IDE files
+.vscode/
+.idea/
+
+# Logs
+logs/
+*.log
+
+# Temporary files
+tmp/
+temp/
+*.tmp
+
+# SQLite databases (if you want fresh DB in production)
+# Uncomment the line below if you don't want to copy existing database
+# *.db
+
+

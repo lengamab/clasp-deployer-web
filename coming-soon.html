@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coming Soon — ScriptFlow</title>
+    <meta name="description" content="This page is under construction. We're working hard to bring you something amazing. Stay tuned!">
+    <link rel="canonical" href="https://scriptflowapp.space/coming-soon">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <!-- Icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link rel="icon" type="image/webp" sizes="32x32" href="assets/img/favicon.webp">
+
+    <style>
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8f9fa;
+            --text-primary: #202124;
+            --text-secondary: #5f6368;
+            --text-tertiary: #80868b;
+            --brand-blue: #4285f4;
+            --brand-google-yellow: #fbbc04;
+            --border-subtle: #f1f3f4;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg-primary: #171717;
+                --bg-secondary: #202124;
+                --text-primary: #e8eaed;
+                --text-secondary: #9aa0a6;
+                --text-tertiary: #80868b;
+                --border-subtle: #3c4043;
+            }
+        }
+
+        body {
+            font-family: 'Google Sans', 'Inter', system-ui, -apple-system, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Animated background */
+        .bg-pattern {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: radial-gradient(var(--border-subtle) 1.5px, transparent 1.5px);
+            background-size: 40px 40px;
+            opacity: 0.3;
+            z-index: 0;
+        }
+
+        .container {
+            position: relative;
+            z-index: 1;
+            max-width: 600px;
+        }
+
+        /* Construction icon with animation */
+        .icon-wrapper {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 40px;
+            background: linear-gradient(135deg, rgba(66, 133, 244, 0.1), rgba(251, 188, 4, 0.1));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: pulse 3s ease-in-out infinite;
+        }
+
+        .icon-wrapper i {
+            font-size: 48px;
+            background: linear-gradient(135deg, var(--brand-blue), var(--brand-google-yellow));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: wiggle 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.05); opacity: 0.9; }
+        }
+
+        @keyframes wiggle {
+            0%, 100% { transform: rotate(-5deg); }
+            50% { transform: rotate(5deg); }
+        }
+
+        h1 {
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            letter-spacing: -1px;
+            background: linear-gradient(180deg, var(--text-primary) 0%, var(--text-secondary) 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .subtitle {
+            font-size: 20px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+            margin-bottom: 40px;
+        }
+
+        .features-preview {
+            display: flex;
+            justify-content: center;
+            gap: 32px;
+            flex-wrap: wrap;
+            margin-bottom: 48px;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+
+        .feature-item i {
+            color: var(--brand-blue);
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 14px 28px;
+            border-radius: 24px;
+            font-size: 16px;
+            font-weight: 500;
+            text-decoration: none;
+            transition: all 0.2s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-primary {
+            background: var(--text-primary);
+            color: var(--bg-primary);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .btn-secondary {
+            background: var(--bg-secondary);
+            color: var(--text-primary);
+            border: 1px solid var(--border-subtle);
+        }
+
+        .btn-secondary:hover {
+            background: var(--border-subtle);
+        }
+
+        /* Progress bar animation */
+        .progress-container {
+            width: 100%;
+            max-width: 300px;
+            margin: 0 auto 32px;
+        }
+
+        .progress-label {
+            display: flex;
+            justify-content: space-between;
+            font-size: 12px;
+            color: var(--text-tertiary);
+            margin-bottom: 8px;
+        }
+
+        .progress-bar {
+            height: 6px;
+            background: var(--bg-secondary);
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            width: 65%;
+            background: linear-gradient(90deg, var(--brand-blue), var(--brand-google-yellow));
+            border-radius: 3px;
+            animation: progress 2s ease-in-out infinite;
+        }
+
+        @keyframes progress {
+            0%, 100% { width: 60%; }
+            50% { width: 70%; }
+        }
+
+        .footer-note {
+            margin-top: 60px;
+            font-size: 13px;
+            color: var(--text-tertiary);
+        }
+
+        .footer-note a {
+            color: var(--brand-blue);
+            text-decoration: none;
+        }
+
+        .footer-note a:hover {
+            text-decoration: underline;
+        }
+
+        /* Floating particles */
+        .particle {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            opacity: 0.5;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .particle:nth-child(1) {
+            background: var(--brand-blue);
+            top: 20%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+
+        .particle:nth-child(2) {
+            background: var(--brand-google-yellow);
+            top: 60%;
+            left: 85%;
+            animation-delay: 1s;
+        }
+
+        .particle:nth-child(3) {
+            background: #34a853;
+            top: 80%;
+            left: 15%;
+            animation-delay: 2s;
+        }
+
+        .particle:nth-child(4) {
+            background: #ea4335;
+            top: 30%;
+            left: 90%;
+            animation-delay: 3s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(180deg); }
+        }
+
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 32px;
+            }
+
+            .subtitle {
+                font-size: 16px;
+            }
+
+            .icon-wrapper {
+                width: 100px;
+                height: 100px;
+            }
+
+            .icon-wrapper i {
+                font-size: 36px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Background pattern -->
+    <div class="bg-pattern"></div>
+    
+    <!-- Floating particles -->
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+
+    <div class="container">
+        <div class="icon-wrapper">
+            <i class="fas fa-hammer"></i>
+        </div>
+
+        <h1>Coming Soon</h1>
+        
+        <p class="subtitle">
+            We're crafting something special for you. This page is currently under construction, 
+            but we're working hard to make it amazing.
+        </p>
+
+        <div class="progress-container">
+            <div class="progress-label">
+                <span>Progress</span>
+                <span>~65%</span>
+            </div>
+            <div class="progress-bar">
+                <div class="progress-fill"></div>
+            </div>
+        </div>
+
+        <div class="features-preview">
+            <div class="feature-item">
+                <i class="fas fa-check-circle"></i>
+                <span>Design complete</span>
+            </div>
+            <div class="feature-item">
+                <i class="fas fa-spinner fa-spin"></i>
+                <span>Development in progress</span>
+            </div>
+            <div class="feature-item">
+                <i class="far fa-circle"></i>
+                <span>Testing pending</span>
+            </div>
+        </div>
+
+        <div class="btn-group">
+            <a href="/" class="btn btn-primary">
+                <i class="fas fa-arrow-left"></i> Back to Home
+            </a>
+            <a href="/product" class="btn btn-secondary">
+                <i class="fas fa-rocket"></i> Explore Product
+            </a>
+        </div>
+
+        <p class="footer-note">
+            Want to be notified when this page is ready? <a href="/#newsletter">Subscribe to updates</a>
+        </p>
+    </div>
+</body>
+
+</html>

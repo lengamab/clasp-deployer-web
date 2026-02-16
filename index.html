@@ -1,0 +1,857 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ScriptFlow</title>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+        rel="stylesheet">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/webp" sizes="32x32" href="assets/img/favicon.webp">
+    <link rel="icon" type="image/webp" sizes="16x16" href="assets/img/favicon.webp">
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/img/favicon.webp">
+
+    <link rel="stylesheet" href="styles.css?v=2.3">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+
+    <!-- Anti-Flash Theme Script -->
+    <script>
+        (function () {
+            const savedTheme = localStorage.getItem('ui-theme') || 'system';
+            document.documentElement.setAttribute('data-theme', savedTheme);
+            document.documentElement.classList.add('theme-' + savedTheme);
+        })();
+    </script>
+</head>
+
+<body>
+    <div class="app-container">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar glass-panel">
+            <div class="sidebar-header">
+                <img src="assets/img/logo-dark.webp" alt="ScriptFlow" class="main-logo" id="appLogo">
+                <span class="badge-beta">PRO</span>
+            </div>
+
+            <nav class="sidebar-nav">
+                <div class="nav-section">
+                    <h3 class="nav-label">Main</h3>
+                    <button class="nav-item active" data-page="dashboard"
+                        onclick="window.navigationManager?.switchToPage('dashboard')">
+                        <i class="fas fa-chart-line"></i>
+                        <span>Dashboard</span>
+                    </button>
+
+                    <button class="nav-item" data-page="account"
+                        onclick="window.navigationManager?.switchToPage('account')">
+                        <i class="fas fa-user-circle"></i>
+                        <span>Account</span>
+                    </button>
+                </div>
+
+                <div class="nav-section" id="platformsSection">
+                    <h3 class="nav-label">Automation</h3>
+                    <div id="platformNavItems"></div>
+                    <button class="nav-item" data-page="ai-converter"
+                        onclick="window.navigationManager?.switchToPage('ai-converter')">
+                        <i class="fas fa-wand-magic-sparkles"></i>
+                        <span>AI Converter</span>
+                    </button>
+                </div>
+
+                <!-- Special Promo Link -->
+                <div class="nav-section">
+                    <a href="/pricing" class="nav-item special-promo">
+                        <i class="fas fa-crown"></i>
+                        <span>Upgrade to Pro</span>
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                    <h3 class="nav-label">System</h3>
+                    <button class="nav-item" onclick="window.location.href='/docs'">
+                        <i class="fas fa-book"></i>
+                        <span>Docs</span>
+                    </button>
+                    <div class="settings-trigger">
+                        <button class="nav-item" id="settingsBtn">
+                            <i class="fas fa-cog"></i>
+                            <span>Settings</span>
+                        </button>
+                    </div>
+                </div>
+            </nav>
+
+            <div class="sidebar-footer">
+                <div class="status-indicator online">
+                    <span class="dot"></span>
+                    <span class="text">System All Green</span>
+                </div>
+                <div
+                    style="margin-top: 12px; font-size: 11px; text-align: center; display: flex; gap: 8px; justify-content: center; opacity: 0.6;">
+                    <a href="/privacy" style="color: var(--text-secondary); text-decoration: none;">Privacy</a>
+                    <span>•</span>
+                    <a href="/terms" style="color: var(--text-secondary); text-decoration: none;">Terms</a>
+                    <span>•</span>
+                    <a href="/cookies" style="color: var(--text-secondary); text-decoration: none;">Cookies</a>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <!-- Header Bar -->
+            <header class="top-bar">
+                <div class="breadcrumb">
+                    <span id="pageTitle">Dashboard</span>
+                </div>
+                <div class="top-actions">
+                    <div class="search-bar glass-input-wrapper">
+                        <i class="fas fa-search"></i>
+                        <input type="text" placeholder="Search projects & scenarios... (Cmd+K)" id="globalSearch">
+                    </div>
+                    <div class="user-profile">
+                        <div class="avatar">BL</div>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Content Views Container -->
+            <div class="views-container">
+
+                <!-- Dashboard View -->
+                <div id="dashboardPage" class="view-panel active">
+                    <div class="dashboard-grid">
+                        <!-- Stat Cards -->
+                        <div class="stat-card glass-panel neon-blue">
+                            <div class="stat-icon"><i class="fab fa-google"></i></div>
+                            <div class="stat-info">
+                                <span class="stat-label">Apps Scripts</span>
+                                <h3 class="stat-value" id="statsClaspCount">--</h3>
+                            </div>
+                        </div>
+                        <div class="stat-card glass-panel neon-purple">
+                            <div class="stat-icon"><i class="fas fa-robot"></i></div>
+                            <div class="stat-info">
+                                <span class="stat-label">Scenarios</span>
+                                <h3 class="stat-value" id="statsMakeCount">--</h3>
+                            </div>
+                        </div>
+                        <div class="stat-card glass-panel neon-green">
+                            <div class="stat-icon"><i class="fas fa-check-circle"></i></div>
+                            <div class="stat-info">
+                                <span class="stat-label">Deployments</span>
+                                <h3 class="stat-value" id="statsDeployCount">Recent</h3>
+                            </div>
+                        </div>
+
+                        <!-- Recent Activity -->
+                        <div class="dashboard-section full-width glass-panel">
+                            <div class="section-header">
+                                <h3><i class="fas fa-history"></i> Recent Activity</h3>
+                            </div>
+                            <div class="activity-feed" id="dashboardActivityFeed">
+                                <div class="loading-state">
+                                    <div class="spinner"></div>
+                                    <p>Gathering intelligence...</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Quick Actions -->
+                        <div class="dashboard-section half-width glass-panel">
+                            <div class="section-header">
+                                <h3><i class="fas fa-rocket"></i> Quick Actions</h3>
+                            </div>
+                            <div class="quick-actions-grid">
+                                <button class="action-tile"
+                                    onclick="document.getElementById('claspScriptUrl').focus(); window.navigationManager.switchToPage('clasp');">
+                                    <i class="fas fa-plus"></i> New Script
+                                </button>
+                                <button class="action-tile"
+                                    onclick="document.getElementById('makeScenarioName').focus(); window.navigationManager.switchToPage('make');">
+                                    <i class="fas fa-network-wired"></i> New Scenario
+                                </button>
+                                <button class="action-tile"
+                                    onclick="window.navigationManager.switchToPage('make'); setTimeout(() => document.querySelector('[data-tab=available]').click(), 100);">
+                                    <i class="fas fa-cloud-download-alt"></i> Pull Scenario
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CLASP View -->
+                <div id="claspPage" class="view-panel" style="display: none;">
+                    <div class="tabs-glass">
+                        <button class="tab-item active" href="#claspProjectsSection" data-tab="local">Local
+                            Projects</button>
+                        <button class="tab-item" href="#claspAvailableScriptsSection" data-tab="available">Browse Apps
+                            Scripts</button>
+                        <div class="tab-actions">
+                            <button id="claspRefreshProjectsBtn" class="glass-btn icon-only small"
+                                title="Refresh Local Projects">
+                                <i class="fas fa-sync-alt"></i>
+                            </button>
+                            <button id="claspRefreshAvailableBtn" class="glass-btn icon-only small" style="display:none"
+                                title="Refresh Apps Scripts List">
+                                <i class="fas fa-cloud-download-alt"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="view-content-wrapper">
+                        <!-- Local Projects -->
+                        <div id="claspProjectsSection" class="tab-content active">
+                            <div class="split-layout">
+                                <!-- Projects List -->
+                                <div class="list-panel glass-panel">
+                                    <div class="panel-header">
+                                        <h3>Active Projects</h3>
+                                    </div>
+                                    <div class="projects-grid scrollable-y" id="claspProjectsGrid">
+                                        <div class="loading">Loading projects...</div>
+                                    </div>
+                                </div>
+
+                                <!-- Deploy Panel -->
+                                <div class="deploy-panel glass-panel">
+                                    <div class="panel-header">
+                                        <h3>New Project</h3>
+                                        <p class="panel-description">Deploy from existing script or create new.</p>
+                                    </div>
+                                    <div class="glass-form">
+                                        <div class="input-group">
+                                            <label><i class="fas fa-link"></i> Script URL / ID</label>
+                                            <input type="text" id="claspScriptUrl"
+                                                placeholder="https://script.google.com/..." class="glass-input">
+                                        </div>
+                                        <div class="input-group">
+                                            <input type="text" id="claspProjectName" placeholder="My Awesome Project"
+                                                class="glass-input">
+                                        </div>
+                                        <div class="input-group">
+                                            <label><i class="fas fa-file-csv"></i> Spreadsheet URL (Optional)</label>
+                                            <input type="text" id="claspSheetUrl"
+                                                placeholder="https://docs.google.com/spreadsheets/d/..."
+                                                class="glass-input">
+                                        </div>
+                                        <button id="claspDeployBtn" class="glass-btn primary large w-100">
+                                            <i class="fas fa-plus"></i> Create
+                                        </button>
+                                    </div>
+
+                                    <!-- Progress & Logs -->
+                                    <div id="claspProgressSection" class="status-section" style="display: none;">
+                                        <div class="status-header">
+                                            <span class="pulse-dot"></span> Deploying...
+                                        </div>
+                                        <div class="progress-bar-glass">
+                                            <div class="fill" id="claspProgressFill"></div>
+                                        </div>
+                                        <div class="log-terminal" id="claspLogOutput"></div>
+                                    </div>
+
+                                    <!-- Success State -->
+                                    <div id="claspSuccessSection" class="status-section success" style="display: none;">
+                                        <div class="success-banner">
+                                            <i class="fas fa-check-circle"></i>
+                                            <h4>Success!</h4>
+                                        </div>
+                                        <div id="claspProjectInfo"></div>
+                                        <div class="actions-grid">
+                                            <button id="claspOpenProjectBtn" class="glass-btn">Open Folder</button>
+                                            <button id="claspOpenScriptBtn" class="glass-btn">Open GAS</button>
+                                            <button id="claspNewDeployBtn" class="glass-btn secondary">Deploy
+                                                New</button>
+                                        </div>
+                                    </div>
+
+                                    <!-- Error State -->
+                                    <div id="claspErrorSection" class="status-section error" style="display: none;">
+                                        <div class="error-banner">
+                                            <i class="fas fa-exclamation-triangle"></i>
+                                            <h4 id="claspErrorMessage">Error</h4>
+                                        </div>
+                                        <div id="claspErrorDetails" class="error-details"></div>
+                                        <div class="actions-grid">
+                                            <button id="claspRetryBtn" class="glass-btn">Retry</button>
+                                            <button id="claspNewDeployErrorBtn"
+                                                class="glass-btn secondary">Close</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Available Scripts (New Section) -->
+                        <div id="claspAvailableScriptsSection" class="tab-content" style="display: none;">
+                            <div class="projects-grid" id="claspAvailableScriptsGrid">
+                                <div class="loading">Loading from Google account...</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Make View -->
+                <div id="makePage" class="view-panel" style="display: none;">
+                    <div class="tabs-glass">
+                        <button class="tab-item active" href="#makeScenariosSection" data-tab="local">Local
+                            Scenarios</button>
+                        <button class="tab-item" href="#makeAvailableScenariosSection" data-tab="available">Browse
+                            Make.com</button>
+                        <div class="tab-actions">
+                            <button id="makeRefreshScenariosBtn" class="glass-btn icon-only small"><i
+                                    class="fas fa-sync-alt"></i></button>
+                            <button id="makeRefreshAvailableBtn" class="glass-btn icon-only small"
+                                style="display:none"><i class="fas fa-cloud-download-alt"></i></button>
+                        </div>
+                    </div>
+
+                    <div class="view-content-wrapper">
+                        <!-- Local Scenarios -->
+                        <div id="makeScenariosSection" class="tab-content active">
+                            <div class="split-layout">
+                                <!-- Scenarios List -->
+                                <div class="list-panel glass-panel">
+                                    <div class="panel-header">
+                                        <h3>Active Scenarios</h3>
+                                    </div>
+                                    <div class="projects-grid scrollable-y" id="makeScenariosGrid">
+                                        <div class="loading">Loading scenarios...</div>
+                                    </div>
+                                </div>
+
+                                <!-- Create/Deploy Panel -->
+                                <div class="deploy-panel glass-panel">
+                                    <div class="panel-header">
+                                        <h3>Create New Scenario</h3>
+                                    </div>
+
+                                    <!-- Create Form -->
+                                    <div id="makeNewScenarioSection" class="glass-form">
+                                        <div class="input-group">
+                                            <label><i class="fas fa-tag"></i> Scenario Name</label>
+                                            <input type="text" id="makeScenarioName" placeholder="My New Scenario"
+                                                class="glass-input">
+                                        </div>
+                                        <button id="makeCreateBtn" class="glass-btn primary large w-100">
+                                            <i class="fas fa-plus"></i> Create
+                                        </button>
+                                    </div>
+
+                                    <!-- Progress Section -->
+                                    <div id="makeProgressSection" class="status-section" style="display: none;">
+                                        <div class="status-header">
+                                            <span class="pulse-dot"></span> Processing...
+                                        </div>
+                                        <div class="progress-bar-glass">
+                                            <div class="fill" id="makeProgressFill"></div>
+                                        </div>
+                                        <div class="log-terminal" id="makeLogOutput"></div>
+                                    </div>
+
+                                    <!-- Success Section -->
+                                    <div id="makeSuccessSection" class="status-section success" style="display: none;">
+                                        <div class="success-banner">
+                                            <i class="fas fa-check-circle"></i>
+                                            <h4 id="makeSuccessMessage">Success!</h4>
+                                        </div>
+                                        <div id="makeScenarioInfo"></div>
+                                        <div class="actions-grid">
+                                            <button id="makeOpenLocalBtn" class="glass-btn">Open Local</button>
+                                            <button id="makeOpenWebBtn" class="glass-btn">Make.com</button>
+                                            <button id="makeNewOperationBtn" class="glass-btn secondary">Close</button>
+                                        </div>
+                                    </div>
+
+                                    <!-- Error Section -->
+                                    <div id="makeErrorSection" class="status-section error" style="display: none;">
+                                        <div class="error-banner">
+                                            <i class="fas fa-exclamation-triangle"></i>
+                                            <h4 id="makeErrorMessage">Error</h4>
+                                        </div>
+                                        <div id="makeErrorDetails" class="error-details"></div>
+                                        <div class="actions-grid">
+                                            <button id="makeRetryBtn" class="glass-btn">Retry</button>
+                                            <button id="makeNewOperationErrorBtn"
+                                                class="glass-btn secondary">Close</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Available Scenarios -->
+                        <div id="makeAvailableScenariosSection" class="tab-content" style="display: none;">
+                            <div class="list-panel glass-panel full-height">
+                                <div class="panel-header">
+                                    <div class="header-left">
+                                        <h3>Available Scenarios on Make.com</h3>
+                                        <p class="panel-subtitle">Pull scenarios from your account to manage them
+                                            locally</p>
+                                    </div>
+                                    <div class="header-right">
+                                        <button id="makeRefreshAvailableBtnGrid" class="glass-btn small">
+                                            <i class="fas fa-sync-alt"></i> Refresh
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="projects-grid" id="makeAvailableScenariosGrid">
+                                    <div class="loading">Loading scenarios from Make.com...</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Account / Subscription View -->
+                <div id="accountPage" class="view-panel" style="display: none;">
+                    <div class="dashboard-grid">
+
+                        <!-- Subscription Card -->
+                        <div id="subscriptionCard" class="full-width">
+                            <!-- Populated by JS -->
+                            <div class="loading">Loading subscription info...</div>
+                        </div>
+
+                        <!-- Usage Stats -->
+                        <div class="dashboard-section full-width glass-panel">
+                            <div class="section-header">
+                                <h3><i class="fas fa-chart-pie"></i> Usage & Limits</h3>
+                            </div>
+                            <div id="usageStatsGrid" class="usage-stats-grid">
+                                <!-- Populated by JS -->
+                                <div class="loading">Loading usage stats...</div>
+                            </div>
+                        </div>
+
+                        <!-- Billing History Placeholder -->
+                        <div class="dashboard-section full-width glass-panel">
+                            <div class="section-header">
+                                <h3><i class="fas fa-file-invoice-dollar"></i> Recent Invoices</h3>
+                            </div>
+                            <table class="glass-table w-100">
+                                <thead>
+                                    <tr>
+                                        <th>Date</th>
+                                        <th>Description</th>
+                                        <th>Amount</th>
+                                        <th>Status</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Dec 01, 2025</td>
+                                        <td>Pro Monthly Subscription</td>
+                                        <td>$19.00</td>
+                                        <td><span class="status-badge success">Paid</span></td>
+                                        <td><button class="glass-btn icon-only small"><i
+                                                    class="fas fa-download"></i></button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Nov 01, 2025</td>
+                                        <td>Pro Monthly Subscription</td>
+                                        <td>$19.00</td>
+                                        <td><span class="status-badge success">Paid</span></td>
+                                        <td><button class="glass-btn icon-only small"><i
+                                                    class="fas fa-download"></i></button></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+
+                <!-- AI Converter View -->
+                <div id="aiConverterPage" class="view-panel" style="display: none;">
+                    <div class="split-layout ai-converter-layout">
+                        <!-- Input Section -->
+                        <div class="list-panel glass-panel" id="aiInputPanel">
+                            <div class="panel-header">
+                                <h3><i class="fas fa-wand-magic-sparkles"></i> AI Blueprint Converter</h3>
+                                <p class="panel-description">Convert Make/N8n blueprints to Google Apps Script.</p>
+                            </div>
+                            <div class="glass-form ai-input-form">
+                                <!-- File Drop Zone -->
+                                <div id="aiFileDropZone" class="file-drop-zone">
+                                    <i class="fas fa-file-import"></i>
+                                    <span>Drag & Drop Blueprint JSON or <strong>Click to Upload</strong></span>
+                                    <input type="file" id="aiFileInput" accept=".json" style="display: none;">
+                                </div>
+
+                                <div class="input-group ai-blueprint-group">
+                                    <label>Paste Blueprint JSON</label>
+                                    <textarea id="aiBlueprintInput"
+                                        placeholder="Paste your Make.com or n8n JSON export here..."
+                                        class="glass-input"></textarea>
+                                </div>
+                                <div class="actions-row">
+                                    <div class="platform-toggles">
+                                        <label class="radio-label">
+                                            <input type="radio" name="aiPlatform" value="make" checked> Make.com
+                                        </label>
+                                        <label class="radio-label">
+                                            <input type="radio" name="aiPlatform" value="n8n"> n8n
+                                        </label>
+                                    </div>
+                                    <button id="aiConvertBtn" class="glass-btn primary">
+                                        <i class="fas fa-sparkles"></i> Analyze & Convert
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Results Section (Initially Hidden) -->
+                        <div class="deploy-panel glass-panel" id="aiResultPanel" style="display: none;">
+                            <!-- Result Header - Reorganized -->
+                            <div class="panel-header">
+                                <div class="result-header-top">
+                                    <h3>Conversion Results</h3>
+                                    <div class="result-actions">
+                                        <button id="aiCopyBtn" class="glass-btn small" title="Copy to Clipboard">
+                                            <i class="fas fa-copy"></i>
+                                        </button>
+                                        <button id="aiDeployBtn" class="glass-btn primary small">
+                                            <i class="fas fa-cloud-upload-alt"></i> Deploy
+                                        </button>
+                                        <button id="aiResetBtn" class="glass-btn small">
+                                            <i class="fas fa-redo"></i> New
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="result-header-savings">
+                                    <div class="savings-badge" id="aiSavingsBadge">
+                                        <i class="fas fa-piggy-bank"></i>
+                                        <span>Est. Savings: <strong id="aiSavingsAmount">$106.50/month</strong><br>
+                                        <small style="opacity: 0.8; font-size: 11px;">($3.55/day, $0.0036/run)</small></span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Split View for Results -->
+                            <div class="ai-result-split">
+                                <!-- Tabs -->
+                                <div class="tabs-glass small-tabs">
+                                    <button class="tab-item active" data-target="aiCodeTab">Generated Script</button>
+                                    <button class="tab-item" data-target="aiInstructionsTab">AI Instructions</button>
+                                </div>
+
+                                <!-- Code View -->
+                                <div id="aiCodeTab" class="result-tab-content active">
+                                    <textarea id="aiCodeOutput" class="glass-input code-font" readonly></textarea>
+                                </div>
+
+                                <!-- Instructions View -->
+                                <div id="aiInstructionsTab" class="result-tab-content" style="display: none;">
+                                    <div id="aiInstructionsContent" class="markdown-content"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- User Feedback / Loading Overlay -->
+                        <div id="aiLoadingOverlay" class="ai-loading-overlay" style="display: none;">
+                            <div class="ai-loading-modal glass-panel">
+                                <div class="magic-loading">
+                                    <div class="magic-circle-wrapper">
+                                        <div class="magic-circle"></div>
+                                        <div class="magic-circle-inner"></div>
+                                        <i class="fas fa-wand-magic-sparkles magic-icon"></i>
+                                        <div class="sparkles" id="aiSparkles"></div>
+                                    </div>
+                                    <div class="magic-text">
+                                        <h3>AI is weaving its magic...</h3>
+                                        <p id="aiLoadingText">Optimizing your automation for Google Apps Script</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </main>
+    </div>
+
+    <!-- Scripts -->
+    <!-- Platform System (must load first) -->
+    <script src="platform-config.js"></script>
+    <script src="automation-platform.js"></script>
+    <script src="adapters/make-adapter.js"></script>
+    <script src="adapters/zapier-adapter.js"></script>
+    <script src="adapters/n8n-adapter.js"></script>
+    <script src="adapters/appscript-adapter.js"></script>
+    <script src="platform-manager.js"></script>
+    <script src="platform-navigation.js"></script>
+
+    <!-- Application Scripts -->
+    <script src="navigation.js?v=2.1"></script>
+    <script src="app.js?v=2.0"></script>
+    <script src="make-manager.js"></script>
+    <script src="ai-converter.js?v=2.3"></script>
+    <!-- Dashboard Manager -->
+    <!-- Dashboard Manager -->
+    <script src="dashboard.js?v=2.0"></script>
+    <script src="account.js"></script>
+    <script src="onboarding.js"></script>
+
+
+    <!-- Settings Modal -->
+    <div id="settingsModal" class="modal-overlay" style="display: none;">
+        <div class="modal-content glass-panel settings-modal">
+            <div class="modal-header">
+                <h2><i class="fas fa-cog"></i> Settings</h2>
+                <button class="modal-close"
+                    onclick="document.getElementById('settingsModal').style.display='none'">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="settings-group">
+                    <label>Google Apps Script</label>
+                    <div class="auth-box">
+                        <button class="glass-btn primary w-100" onclick="window.settingsManager.refreshGoogleLogin()">
+                            <i class="fab fa-google"></i> Refresh Google Login
+                        </button>
+                    </div>
+                    <p class="input-hint">Re-authenticates CLASP with your Google account. Use this if you encounter
+                        permission errors.</p>
+                </div>
+
+                <div class="settings-group">
+                    <label>Automation Platforms</label>
+                    <p class="input-hint" style="margin-bottom: 1rem;">Configure API credentials for your automation
+                        platforms. Enable/disable platforms to control what appears in your sidebar.</p>
+
+                    <!-- Make.com -->
+                    <div class="platform-config-card glass-panel" style="margin-bottom: 1rem; padding: 1rem;">
+                        <div
+                            style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.75rem;">
+                            <div style="display: flex; align-items: center; gap: 0.75rem;">
+                                <i class="fas fa-robot" style="font-size: 1.5rem; color: #6366f1;"></i>
+                                <div>
+                                    <strong style="display: block;">Make.com</strong>
+                                    <small style="color: var(--text-secondary);">Visual workflow builder</small>
+                                </div>
+                            </div>
+                            <label class="toggle-switch">
+                                <input type="checkbox" id="platform-make-enabled" checked>
+                                <span class="toggle-slider-small"></span>
+                            </label>
+                        </div>
+                        <div class="input-with-action">
+                            <input type="password" id="platform-make-token" placeholder="API Token" class="glass-input">
+                            <button class="glass-btn icon-only"
+                                onclick="window.settingsManager.togglePlatformTokenVisibility('make')">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                        <small style="color: var(--text-secondary); display: block; margin-top: 0.5rem;">
+                            <a href="https://www.make.com/en/settings/api" target="_blank"
+                                style="color: var(--accent-secondary);">Get API Token →</a>
+                        </small>
+                    </div>
+
+                    <!-- Zapier -->
+                    <div class="platform-config-card glass-panel" style="margin-bottom: 1rem; padding: 1rem;">
+                        <div
+                            style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.75rem;">
+                            <div style="display: flex; align-items: center; gap: 0.75rem;">
+                                <i class="fas fa-bolt" style="font-size: 1.5rem; color: #ff4a00;"></i>
+                                <div>
+                                    <strong style="display: block;">Zapier</strong>
+                                    <small style="color: var(--text-secondary);">8,000+ app integrations</small>
+                                </div>
+                            </div>
+                            <label class="toggle-switch">
+                                <input type="checkbox" id="platform-zapier-enabled">
+                                <span class="toggle-slider-small"></span>
+                            </label>
+                        </div>
+                        <div class="input-with-action">
+                            <input type="password" id="platform-zapier-apikey" placeholder="API Key"
+                                class="glass-input">
+                            <button class="glass-btn icon-only"
+                                onclick="window.settingsManager.togglePlatformTokenVisibility('zapier')">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                        <small style="color: var(--text-secondary); display: block; margin-top: 0.5rem;">
+                            <a href="https://zapier.com/app/settings/api" target="_blank"
+                                style="color: var(--accent-secondary);">Get API Key →</a> (Requires paid plan)
+                        </small>
+                    </div>
+
+                    <!-- n8n -->
+                    <div class="platform-config-card glass-panel" style="padding: 1rem;">
+                        <div
+                            style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.75rem;">
+                            <div style="display: flex; align-items: center; gap: 0.75rem;">
+                                <i class="fas fa-network-wired" style="font-size: 1.5rem; color: #ea4b71;"></i>
+                                <div>
+                                    <strong style="display: block;">n8n</strong>
+                                    <small style="color: var(--text-secondary);">Open-source automation</small>
+                                </div>
+                            </div>
+                            <label class="toggle-switch">
+                                <input type="checkbox" id="platform-n8n-enabled">
+                                <span class="toggle-slider-small"></span>
+                            </label>
+                        </div>
+                        <input type="url" id="platform-n8n-url" placeholder="Instance URL (https://n8n.example.com)"
+                            class="glass-input" style="margin-bottom: 0.5rem;">
+                        <div class="input-with-action">
+                            <input type="password" id="platform-n8n-apikey" placeholder="API Key" class="glass-input">
+                            <button class="glass-btn icon-only"
+                                onclick="window.settingsManager.togglePlatformTokenVisibility('n8n')">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                        <small style="color: var(--text-secondary); display: block; margin-top: 0.5rem;">
+                            <a href="https://docs.n8n.io/api/" target="_blank"
+                                style="color: var(--accent-secondary);">Learn about n8n API</a>
+                        </small>
+                    </div>
+                </div>
+
+                <div class="settings-group">
+                    <label>Workspace Directory</label>
+                    <div class="input-with-action">
+                        <input type="text" id="setting-workspace-path" placeholder="/Users/name/Documents/Projects"
+                            class="glass-input">
+                        <button class="glass-btn" onclick="window.settingsManager.browseWorkspace()"
+                            title="Browse Folder">
+                            <i class="fas fa-folder-open"></i>
+                            <span>Browse</span>
+                        </button>
+                    </div>
+                    <p class="input-hint">Root folder where your local projects are stored. Must be an absolute path.
+                    </p>
+                </div>
+
+                <div class="settings-group">
+                    <label>UI Theme</label>
+                    <div class="theme-toggle-segmented" id="themeToggleContainer">
+                        <button class="toggle-option" data-theme="system" title="Follow system preference">
+                            <i class="fas fa-desktop"></i>
+                            <span>System</span>
+                        </button>
+                        <button class="toggle-option" data-theme="dark" title="Enable dark mode">
+                            <i class="fas fa-moon"></i>
+                            <span>Dark</span>
+                        </button>
+                        <button class="toggle-option" data-theme="light" title="Enable light mode">
+                            <i class="fas fa-sun"></i>
+                            <span>Light</span>
+                        </button>
+                        <div class="toggle-slider"></div>
+                    </div>
+                </div>
+
+                <div class="settings-group">
+                    <label>Default Code Editor</label>
+                    <div class="ide-selector-grid" id="ideSelectorGrid">
+                        <!-- Dynamically populated by settings.js -->
+                        <div class="loading">Loading IDEs...</div>
+                    </div>
+                    <p class="input-hint">Choose which editor to use when opening projects. The system will auto-detect
+                        installed IDEs.</p>
+                </div>
+
+                <div class="settings-group">
+                    <label>System Status</label>
+                    <div class="status-list">
+                        <div class="status-row">
+                            <span>Apps Script API</span>
+                            <span class="status-badge success">Online</span>
+                        </div>
+                        <div class="status-row">
+                            <span>Make.com</span>
+                            <span class="status-badge" id="platform-make-status">Not Tested</span>
+                        </div>
+                        <div class="status-row">
+                            <span>Zapier</span>
+                            <span class="status-badge" id="platform-zapier-status">Not Tested</span>
+                        </div>
+                        <div class="status-row">
+                            <span>n8n</span>
+                            <span class="status-badge" id="platform-n8n-status">Not Tested</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="glass-btn"
+                    onclick="document.getElementById('settingsModal').style.display='none'">Cancel</button>
+                <button class="glass-btn primary" onclick="window.settingsManager.saveSettings()">Save Changes</button>
+            </div>
+        </div>
+
+        <!-- Sheet Association Modal -->
+        <div id="sheetModal" class="modal-overlay" style="display: none;">
+            <div class="modal-content glass-panel settings-modal">
+                <div class="modal-header">
+                    <h2><i class="fas fa-file-spreadsheet"></i> Associate Spreadsheet</h2>
+                    <button class="modal-close"
+                        onclick="document.getElementById('sheetModal').style.display='none'">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div class="settings-group">
+                        <label>Spreadsheet URL</label>
+                        <input type="text" id="sheetModalUrl" placeholder="https://docs.google.com/spreadsheets/d/..."
+                            class="glass-input w-100">
+                        <p class="input-hint">Paste the full URL of the Google Sheet you want to associate with this
+                            project.</p>
+                    </div>
+                    <input type="hidden" id="sheetModalProjectName">
+                </div>
+                <div class="modal-footer">
+                    <button class="glass-btn"
+                        onclick="document.getElementById('sheetModal').style.display='none'">Cancel</button>
+                    <button class="glass-btn primary" onclick="window.claspDeployer.saveSheetAssociation(event)">Save
+                        Association</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Auth Manager -->
+        <script src="auth.js"></script>
+        <script>
+            // Protect this page
+            AuthManager.requireAuth();
+
+            // Display User Info
+            document.addEventListener('DOMContentLoaded', () => {
+                const user = AuthManager.getUser();
+                if (user) {
+                    // Target the top-right profile bubble
+                    const profileContainer = document.querySelector('.top-bar .user-profile');
+                    if (profileContainer) {
+                        // Handle the display in the top bar using CSS classes
+                        profileContainer.innerHTML = `
+                            <div class="user-info-wrapper">
+                                <span class="username">${user.username}</span>
+                                <div class="avatar">${user.username.charAt(0).toUpperCase()}</div>
+                                <div class="divider"></div>
+                                <button class="logout-btn" onclick="AuthManager.logout()" title="Sign Out">
+                                    <i class="fas fa-sign-out-alt"></i>
+                                </button>
+                            </div>
+                        `;
+                    }
+                }
+            });
+        </script>
+
+        <!-- Settings Manager -->
+        <script src="settings.js"></script>
+</body>
+
+</html>

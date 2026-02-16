@@ -1,0 +1,7 @@
+{
+  "apiToken": "YOUR_MAKE_COM_API_TOKEN_HERE",
+  "instructions": "1. Get your API token from https://www.make.com/en/settings/api\n2. Copy this file to .make-config.json\n3. Replace YOUR_MAKE_COM_API_TOKEN_HERE with your actual token\n4. Alternatively, set MAKE_API_TOKEN environment variable"
+}
+
+
+

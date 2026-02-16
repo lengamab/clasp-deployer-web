@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign In - ScriptFlow</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon.png">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="styles.css"> <!-- Base variables -->
+    <link rel="stylesheet" href="auth.css">
+
+    <!-- Theme Script -->
+    <script>
+        (function () {
+            const savedTheme = localStorage.getItem('ui-theme') || 'system';
+            document.documentElement.setAttribute('data-theme', savedTheme);
+        })();
+    </script>
+</head>
+
+<body class="auth-page">
+
+    <div class="auth-container">
+        <div class="auth-card glass-panel">
+            <div class="auth-header">
+                <a href="/" class="auth-logo">
+                    <img src="assets/img/logo-light.png" alt="ScriptFlow" class="logo-light"
+                        style="display: var(--logo-light-display, block)">
+                    <img src="assets/img/logo-dark.png" alt="ScriptFlow" class="logo-dark"
+                        style="display: var(--logo-dark-display, none)">
+                    <span>ScriptFlow</span>
+                </a>
+                <h1 class="auth-title">Welcome Back</h1>
+                <p class="auth-subtitle">Sign in to manage your automation workflows</p>
+            </div>
+
+            <div id="errorAlert" class="auth-error">
+                <i class="fas fa-exclamation-circle"></i>
+                <span id="errorMessage">Invalid credentials</span>
+            </div>
+
+            <form id="loginForm" class="auth-form">
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <div class="input-wrapper">
+                        <i class="fas fa-user"></i>
+                        <input type="text" id="username" class="auth-input" placeholder="Enter your username" required
+                            autofocus>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <div class="input-wrapper">
+                        <i class="fas fa-lock"></i>
+                        <input type="password" id="password" class="auth-input" placeholder="••••••••" required>
+                    </div>
+                </div>
+
+                <button type="submit" class="auth-btn" id="loginBtn">
+                    <span>Sign In</span>
+                    <i class="fas fa-arrow-right"></i>
+                </button>
+            </form>
+
+            <div class="auth-footer">
+                <p>New here? <span style="color: var(--text-secondary)">Contact administrator for access.</span></p>
+                <div style="margin-top: 20px; font-size: 12px; display: flex; gap: 12px; justify-content: center;">
+                    <a href="/privacy" style="color: var(--text-secondary); text-decoration: none;">Privacy
+                        Policy</a>
+                    <a href="/terms" style="color: var(--text-secondary); text-decoration: none;">Terms of
+                        Service</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="auth.js"></script>
+    <script>
+        // Check if already logged in
+        if (AuthManager.isAuthenticated()) {
+            window.location.href = '/app';
+        }
+
+        // Login Logic
+        const loginForm = document.getElementById('loginForm');
+        const loginBtn = document.getElementById('loginBtn');
+        const errorAlert = document.getElementById('errorAlert');
+        const errorMessage = document.getElementById('errorMessage');
+
+        loginForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            // Reset UI
+            errorAlert.style.display = 'none';
+            loginBtn.disabled = true;
+            const originalBtnContent = loginBtn.innerHTML;
+            loginBtn.innerHTML = '<div class="spinner"></div> Signing in...';
+
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            try {
+                const result = await AuthManager.login(username, password);
+
+                if (result.success) {
+                    // Redirect to app or return URL
+                    const returnUrl = sessionStorage.getItem('returnUrl') || '/app';
+                    sessionStorage.removeItem('returnUrl');
+                    window.location.href = returnUrl;
+                } else {
+                    showError(result.error);
+                }
+            } catch (err) {
+                showError('An unexpected error occurred');
+                console.error(err);
+            } finally {
+                loginBtn.disabled = false;
+                loginBtn.innerHTML = originalBtnContent;
+            }
+        });
+
+        function showError(msg) {
+            errorMessage.textContent = msg;
+            errorAlert.style.display = 'flex';
+        }
+    </script>
+</body>
+
+</html>

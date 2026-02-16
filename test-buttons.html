@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Button Test</title>
+    <style>
+        body {
+            padding: 40px;
+            font-family: sans-serif;
+        }
+
+        button {
+            padding: 10px 20px;
+            margin: 10px;
+        }
+
+        .log {
+            background: #f0f0f0;
+            padding: 10px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Sheet Button Test</h1>
+
+    <h2>Test 1: Simple onclick</h2>
+    <button onclick="alert('Inline onclick works!')">Test Inline Onclick</button>
+
+    <h2>Test 2: Data attribute with delegation</h2>
+    <button data-action="test-action" data-project-name="TestProject">Test Data Attributes</button>
+
+    <h2>Test 3: Actual sheet button markup</h2>
+    <button class="glass-btn secondary small associate-sheet-btn" data-action="add-sheet"
+        data-project-name="TestProject" title="Associate Google Sheet">
+        <i class="fas fa-plus"></i> Sheet
+    </button>
+
+    <div class="log" id="log">
+        <strong>Event Log:</strong><br>
+        <div id="logContent">Waiting for events...</div>
+    </div>
+
+    <script>
+        const log = document.getElementById('logContent');
+
+        // Test event delegation
+        document.addEventListener('click', (e) => {
+            log.innerHTML += `<br>Click detected on: ${e.target.tagName} ${e.target.className}`;
+
+            const btn = e.target.closest('[data-action]');
+            if (btn) {
+                const action = btn.getAttribute('data-action');
+                const projectName = btn.getAttribute('data-project-name');
+                log.innerHTML += `<br>✅ Data attributes found! Action: ${action}, Project: ${projectName}`;
+                alert(`Button clicked! Action: ${action}, Project: ${projectName}`);
+            }
+        });
+
+        log.innerHTML = 'Event listener registered. Click any button above.';
+    </script>
+</body>
+
+</html>
