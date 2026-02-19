@@ -377,6 +377,8 @@ body.landing-page {
     background-clip: text;
     -webkit-text-fill-color: transparent;
     max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
     animation: fadeInUp 0.8s ease-out 0.2s backwards;
 }
 
@@ -385,6 +387,8 @@ body.landing-page {
     color: var(--text-secondary);
     max-width: 600px;
     margin-bottom: 40px;
+    margin-left: auto;
+    margin-right: auto;
     line-height: 1.6;
     animation: fadeInUp 0.8s ease-out 0.4s backwards;
 }
