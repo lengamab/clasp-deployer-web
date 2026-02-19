@@ -1225,6 +1225,14 @@ app.get('/faq', (req, res) => {
     res.sendFile(path.join(__dirname, 'faq.html'));
 });
 
+app.get('/make-vs-apps-script', (req, res) => {
+    res.sendFile(path.join(__dirname, 'make-vs-apps-script.html'));
+});
+
+app.get('/zapier-vs-apps-script', (req, res) => {
+    res.sendFile(path.join(__dirname, 'zapier-vs-apps-script.html'));
+});
+
 app.get('/coming-soon', (req, res) => {
     res.sendFile(path.join(__dirname, 'coming-soon.html'));
 });
