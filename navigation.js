@@ -300,12 +300,32 @@ class NavigationManager {
             pageTitle.textContent = titleMap[pageId] || 'Dashboard';
         }
 
-        // 6. Trigger specific functional refreshes if needed
-        if (pageId === 'clasp' && window.claspDeployer) {
-            // window.claspDeployer.loadExistingProjects(); // Optional: Auto-refresh
-        }
         if (pageId === 'ai-converter') {
             this.ensureAiConverterVisible();
+        }
+
+        // 7. Track SPA Page View in GA4
+        this.trackPageView(pageId);
+    }
+
+    trackPageView(pageId) {
+        if (typeof window.gtag === 'function') {
+            const titleMap = {
+                'dashboard': 'Dashboard',
+                'clasp': 'Apps Script Projects',
+                'make': 'Make.com Scenarios',
+                'account': 'Account & Billing',
+                'ai-converter': 'AI Blueprint Converter'
+            };
+
+            const pageTitle = titleMap[pageId] || 'Dashboard';
+
+            window.gtag('event', 'page_view', {
+                page_title: pageTitle,
+                page_location: window.location.href,
+                page_path: window.location.pathname + (window.location.hash || '#' + pageId)
+            });
+            console.log(`📊 [GA4] Tracked SPA Page View: ${pageTitle} (${pageId})`);
         }
     }
 

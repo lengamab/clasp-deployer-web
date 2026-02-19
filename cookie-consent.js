@@ -38,50 +38,86 @@
         }
     }
 
-    // Load Analytics (GTM + GA4) only after consent
-    function loadAnalytics() {
-        if (window.analyticsLoaded) return;
-        window.analyticsLoaded = true;
+    // --- GOOGLE CONSENT MODE v2 SETUP ---
+    // 1. Define IDs
+    const GA4_ID = window.GA4_MEASUREMENT_ID || 'G-PZ1SQN4MRY';
+    const GTM_ID = window.GTM_CONTAINER_ID || 'GTM-XXXXXXX';
 
-        const gtmId = window.GTM_CONTAINER_ID || 'GTM-XXXXXXX';
-        const ga4Id = window.GA4_MEASUREMENT_ID || 'G-PZ1SQN4MRY';
+    // 2. Initialize dataLayer and gtag function immediately
+    window.dataLayer = window.dataLayer || [];
+    window.gtag = window.gtag || function () { window.dataLayer.push(arguments); };
+    const gtag = window.gtag;
 
-        // 1. Load GTM
-        if (gtmId !== 'GTM-XXXXXXX') {
-            (function (w, d, s, l, i) {
-                w[l] = w[l] || [];
-                w[l].push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
-                var f = d.getElementsByTagName(s)[0],
-                    j = d.createElement(s),
-                    dl = l != 'dataLayer' ? '&l=' + l : '';
-                j.async = true;
-                j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
-                f.parentNode.insertBefore(j, f);
-            })(window, document, 'script', 'dataLayer', gtmId);
-            console.log('GTM: Loaded (' + gtmId + ')');
-        } else {
-            console.log('GTM: Placeholder ID, skipping');
-        }
+    // 3. Set default consent
+    // Step A: Set global default to 'granted' (for ROW)
+    gtag('consent', 'default', {
+        'ad_storage': 'granted',
+        'ad_user_data': 'granted',
+        'ad_personalization': 'granted',
+        'analytics_storage': 'granted',
+        'wait_for_update': 500
+    });
 
-        // 2. Load GA4
-        if (ga4Id !== 'G-PZ1SQN4MRY') {
-            // Load gtag.js
-            const script = document.createElement('script');
-            script.async = true;
-            script.src = 'https://www.googletagmanager.com/gtag/js?id=' + ga4Id;
-            document.head.appendChild(script);
+    // Step B: Set specific default to 'denied' for EEA + UK + CH
+    gtag('consent', 'default', {
+        'ad_storage': 'denied',
+        'ad_user_data': 'denied',
+        'ad_personalization': 'denied',
+        'analytics_storage': 'denied',
+        'region': [
+            'AT', 'BE', 'BG', 'HR', 'CY', 'CZ', 'DK', 'EE', 'FI', 'FR', 'DE', 'GR', 'HU', 'IE', 'IT', 'LV', 'LT', 'LU', 'MT', 'NL', 'PL', 'PT', 'RO', 'SK', 'SI', 'ES', 'SE', // EU
+            'IS', 'LI', 'NO', // EEA
+            'GB', 'CH' // UK + Switzerland
+        ]
+    });
 
-            // Initialize dataLayer
-            window.dataLayer = window.dataLayer || [];
-            function gtag() { window.dataLayer.push(arguments); }
-            gtag('js', new Date());
-            gtag('config', ga4Id, { 'anonymize_ip': true }); // GDPR best practice
+    // 4. Load GA4 Script immediately (it will respect the 'denied' state)
+    if (GA4_ID !== 'G-XXXXXXXXXX') {
+        const script = document.createElement('script');
+        script.async = true;
+        script.src = 'https://www.googletagmanager.com/gtag/js?id=' + GA4_ID;
+        document.head.appendChild(script);
 
-            console.log('GA4: Loaded (' + ga4Id + ')');
-        } else {
-            console.log('GA4: Placeholder ID, skipping');
-        }
+        gtag('js', new Date());
+        gtag('config', GA4_ID, { 'anonymize_ip': true });
+        console.log('GA4: Initialized in Consent Mode (Default: Denied)');
     }
+
+    // Function to grant consent
+    function grantConsent() {
+        gtag('consent', 'update', {
+            'ad_storage': 'granted',
+            'ad_user_data': 'granted',
+            'ad_personalization': 'granted',
+            'analytics_storage': 'granted'
+        });
+
+        // Also load GTM if not already loaded (optional, if you track other things via GTM)
+        loadGTM();
+
+        // Initialize other analytics that don't support Consent Mode natively
+        initAnalyticsTracking();
+        console.log('GA4: Consent granted');
+    }
+
+    // Load GTM (Legacy/Container) - kept separate if needed
+    function loadGTM() {
+        if (window.gtmLoaded || GTM_ID === 'GTM-XXXXXXX') return;
+        window.gtmLoaded = true;
+
+        (function (w, d, s, l, i) {
+            w[l] = w[l] || [];
+            w[l].push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
+            var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s),
+                dl = l != 'dataLayer' ? '&l=' + l : '';
+            j.async = true;
+            j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+            f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', GTM_ID);
+        console.log('GTM: Loaded container ' + GTM_ID);
+    }
+
 
     // Create and show consent banner
     function showBanner() {
@@ -207,8 +243,7 @@
         document.getElementById('cookie-accept').addEventListener('click', function () {
             setConsent(true);
             banner.remove();
-            loadAnalytics();
-            initAnalyticsTracking();
+            grantConsent();
         });
 
         document.getElementById('cookie-decline').addEventListener('click', function () {
@@ -275,8 +310,7 @@
 
         if (consent === true) {
             // User already accepted
-            loadAnalytics();
-            initAnalyticsTracking();
+            grantConsent();
         } else if (consent === false) {
             // User declined, don't show banner again
             console.log('Analytics: User previously declined cookies');

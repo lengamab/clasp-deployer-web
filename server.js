@@ -716,12 +716,12 @@ ${typeof blueprint === 'object' ? JSON.stringify(blueprint) : blueprint}
             let aiResult;
             try {
                 aiResult = robustJsonParse(contentText);
-                
+
                 // Log what we got
                 console.log("✅ [AI] Parsed result keys:", Object.keys(aiResult));
                 console.log("✅ [AI] scriptCode length:", aiResult.scriptCode ? aiResult.scriptCode.length : 'undefined');
                 console.log("✅ [AI] scriptCode preview:", aiResult.scriptCode ? aiResult.scriptCode.substring(0, 100) : 'undefined');
-                
+
                 // Validate that we have the expected fields
                 if (!aiResult.scriptCode && !aiResult.code && !aiResult.script) {
                     console.warn("⚠️ [AI] Response missing scriptCode field");
@@ -738,7 +738,7 @@ ${typeof blueprint === 'object' ? JSON.stringify(blueprint) : blueprint}
                 console.error("❌ AI Parsing Failed:", error.message);
                 console.error("❌ Content length:", contentText.length, "chars");
                 console.error("❌ First 500 chars:", contentText.substring(0, 500));
-                
+
                 // Try one more time - maybe it's double-encoded JSON
                 try {
                     // Sometimes the API returns JSON as a string
@@ -752,7 +752,7 @@ ${typeof blueprint === 'object' ? JSON.stringify(blueprint) : blueprint}
                 } catch (e) {
                     // Fall through to error handling
                 }
-                
+
                 if (!aiResult) {
                     aiResult = {
                         scriptCode: "// FATAL: Could not parse AI response.\n// Error: " + error.message + "\n// Raw Response follows:\n\n" + contentText,
@@ -769,10 +769,10 @@ ${typeof blueprint === 'object' ? JSON.stringify(blueprint) : blueprint}
                 estimatedSavings: aiResult.estimatedSavings || aiResult.savings || '$0/month',
                 instructions: aiResult.instructions || aiResult.guide || ''
             };
-            
+
             console.log("📤 [AI] Sending response - scriptCode length:", jsonResponse.scriptCode.length);
             console.log("📤 [AI] Sending response - scriptCode preview:", jsonResponse.scriptCode.substring(0, 100));
-            
+
             res.json(jsonResponse);
         } else {
             throw new Error('No candidates returned from Gemini API');
@@ -1197,7 +1197,8 @@ app.get('/app', (req, res) => {
 });
 
 app.get('/ai-converter', (req, res) => {
-    res.redirect('/app#ai-converter');
+    const queryString = req.url.includes('?') ? req.url.substring(req.url.indexOf('?')) : '';
+    res.redirect('/app' + queryString + '#ai-converter');
 });
 
 app.get('/login', (req, res) => {
@@ -1250,16 +1251,17 @@ app.get('/test-buttons', (req, res) => {
 
 app.get('/*.html', (req, res) => {
     const basePath = req.path.replace(/\.html$/, '');
+    const queryString = req.url.includes('?') ? req.url.substring(req.url.indexOf('?')) : '';
 
     if (basePath === '/index') {
-        return res.redirect(301, '/app');
+        return res.redirect(301, '/app' + queryString);
     }
 
     if (basePath === '/landing') {
-        return res.redirect(301, '/');
+        return res.redirect(301, '/' + queryString);
     }
 
-    return res.redirect(301, basePath);
+    return res.redirect(301, basePath + queryString);
 });
 
 // Static middleware - serve other static files (css, js, assets)

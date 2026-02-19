@@ -1,5 +1,5 @@
 # Use official Node.js LTS image
-FROM node:18-slim
+FROM node:22-slim
 
 # Install Python for better-sqlite3 native compilation
 RUN apt-get update && apt-get install -y \
