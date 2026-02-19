@@ -40,4 +40,5 @@ jobs:
             --image gcr.io/${{ env.PROJECT_ID }}/${{ env.SERVICE_NAME }}:${{ github.sha }} \
             --platform managed \
             --region ${{ env.REGION }} \
-            --allow-unauthenticated
+            --allow-unauthenticated \
+            --update-env-vars GEMINI_API_KEY=${{ secrets.GEMINI_API_KEY }}

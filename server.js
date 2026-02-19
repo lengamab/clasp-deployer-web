@@ -57,7 +57,7 @@ app.use((req, res, next) => {
 app.use('/api/auth', authRoutes);
 
 // Make.com API helper function (needed before routes)
-const GEMINI_API_KEY = "AIzaSyDiXu20Ve5mlfqwJwYkXJFNa4VVieyi9S4";
+const GEMINI_API_KEY = process.env.GEMINI_API_KEY || "AIzaSyDiXu20Ve5mlfqwJwYkXJFNa4VVieyi9S4_PLACEHOLDER";
 
 function getMakeApiToken(req) {
     // Check request headers first (priority 1)
