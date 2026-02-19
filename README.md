@@ -1,199 +1,85 @@
-# 🚀 CLASP Deployer
+# 🚀 ScriptFlow: Reclaiming Serverless Automation
 
-A comprehensive deployment system for Google Apps Script projects with both web and command-line interfaces.
+[![Deploy to Cloud Run](https://github.com/lengamab/clasp-deployer-web/actions/workflows/deploy.yml/badge.svg)](https://github.com/lengamab/clasp-deployer-web/actions/workflows/deploy.yml)
 
-## 🎯 **Quick Start Options**
+**ScriptFlow** is a professional developer platform that bridges the gap between high-overhead no-code tools (Make.com, Zapier, n8n) and the cost-effective power of **Google Apps Script**.
 
-### **Option 1: Desktop App (Recommended)**
-- **Double-click** "CLASP Deployer Web.command" on your desktop
-- **Interactive CLI** that prompts for URL and project name
-- **Immediate deployment** with live progress
-
-### **Option 2: Command Line**
-```bash
-# Direct deployment with URL
-npm run deploy "https://script.google.com/d/YOUR_SCRIPT_ID/edit" "My Project"
-
-# Interactive mode
-npm run deploy
-```
-
-### **Option 3: Web Interface (when available)**
-```bash
-npm run web
-# Then open http://localhost:3002 in your browser
-```
-
-## ✨ Features
-
-- **🌐 Browser-Based**: No installation required - runs in any modern browser
-- **⚡ One-Click Deployment**: Deploy CLASP environments with a single click
-- **📊 Real-time Progress**: Live deployment progress with detailed logs
-- **🔗 Smart URL Parsing**: Automatically handles various Google Apps Script URL formats
-- **📱 Responsive Design**: Works on desktop, tablet, and mobile devices
-- **🎨 Modern UI**: Clean, dark-themed interface with smooth animations
-
-## 🚀 Quick Start
-
-### Option 1: Desktop Shortcut (Recommended)
-1. **Double-click** "CLASP Deployer Web.command" on your desktop
-2. Your browser will automatically open to `http://localhost:3002`
-3. Start deploying!
-
-### Option 2: Manual Start
-```bash
-# Navigate to the web app directory
-cd clasp-deployer-web
-
-# Start the server
-npm start
-
-# Open your browser to http://localhost:3002
-```
-
-### Option 3: From Project Root
-```bash
-# Start the web app
-npm run web
-
-# Open your browser to http://localhost:3002
-```
-
-## 📖 How to Use
-
-### Deploying a Project
-
-1. **Open the web app** in your browser
-2. **Enter your script URL** or Script ID:
-   - Full URL: `https://script.google.com/d/SCRIPT_ID/edit`
-   - Short URL: `https://script.google.com/d/SCRIPT_ID`
-   - Direct ID: `SCRIPT_ID`
-3. **Optional**: Enter a project name (auto-generated if left empty)
-4. **Click "Deploy Environment"** and watch the progress
-5. **Success!** Your CLASP environment is deployed
-
-### What Happens During Deployment
-
-The tool automatically:
-- ✅ Checks CLASP installation and authentication
-- ✅ Parses your script URL to extract the Script ID
-- ✅ Creates project structure in `scripts/`
-- ✅ Generates `.clasp.json` and `appsscript.json`
-- ✅ Pulls existing code or creates basic templates
-- ✅ Pushes everything to Google Apps Script
-
-## 🔧 Technical Details
-
-### Architecture
-
-```
-clasp-deployer-web/
-├── server.js          # Express.js server with deployment API
-├── index.html         # Main web interface
-├── styles.css         # Modern dark theme
-├── app.js            # Frontend JavaScript logic
-└── package.json      # Dependencies and scripts
-```
-
-### API Endpoints
-
-- `GET /` - Serves the main web interface
-- `POST /api/deploy` - Handles deployment requests
-
-### Supported URL Formats
-
-- `https://script.google.com/d/SCRIPT_ID/edit`
-- `https://script.google.com/d/SCRIPT_ID`
-- `https://script.google.com/macros/s/SCRIPT_ID/exec`
-- Direct Script ID: `SCRIPT_ID`
-
-## 🛠️ Development
-
-### Prerequisites
-
-- Node.js 14+ installed
-- Modern web browser (Chrome, Firefox, Safari, Edge)
-
-### Local Development
-
-```bash
-# Install dependencies
-npm install
-
-# Start development server
-npm run dev
-
-# Server runs on http://localhost:3002
-```
-
-### Project Structure
-
-The web app communicates with your existing `deploy-clasp.js` script through a REST API, providing the same functionality as the command-line version with a beautiful web interface.
-
-## 🌐 Browser Compatibility
-
-- ✅ Chrome 90+
-- ✅ Firefox 88+
-- ✅ Safari 14+
-- ✅ Edge 90+
-- ✅ Mobile browsers (iOS Safari, Chrome Mobile)
-
-## 🔒 Security
-
-- Runs locally on `localhost:3002`
-- No external data transmission
-- All deployment logic runs on your machine
-- Same security as command-line CLASP usage
-
-## 🐛 Troubleshooting
-
-### Server Won't Start
-```bash
-# Check if port 3002 is available
-lsof -i :3002
-
-# Kill process using port 3002
-kill -9 <PID>
-```
-
-### Deployment Fails
-- Check the deployment logs in the web interface
-- Ensure CLASP is properly authenticated
-- Verify your script URL is correct
-- Make sure you have access to the Google Apps Script project
-
-### Browser Issues
-- Clear browser cache and reload
-- Try a different browser
-- Check browser console for errors
-
-## 📋 Requirements
-
-- **Node.js**: 14.0.0 or higher
-- **Google Account**: With Google Apps Script access
-- **Modern Browser**: Any recent version of Chrome, Firefox, Safari, or Edge
-
-## 🎯 Use Cases
-
-### For Beginners
-- First-time CLASP users who want a visual interface
-- Users who prefer web-based tools over command line
-- Teams that need easy deployment access
-
-### For Advanced Users
-- Quick deployments without opening terminal
-- Visual progress monitoring
-- Easy access to project information and links
-
-### For Development Teams
-- Standardized deployment process
-- Easy onboarding for new team members
-- Consistent project setup across different machines
-
-## 📄 License
-
-MIT License - see the main project LICENSE file for details.
+Save up to **90% on automation operation costs** by converting visual logic into high-performance, serverless code that runs for free on Google Cloud infrastructure.
 
 ---
 
-**🚀 Happy deploying with CLASP Deployer Web!**
+## ✨ Key Features
+
+### 🤖 AI Blueprint Converter
+Stop paying per "Operation." Export your Make.com, Zapier, or n8n blueprints as JSON and use our AI engine to convert them into production-ready Google Apps Script in seconds.
+
+### �️ Professional Unified IDE
+Bring modern software engineering standards to Apps Script:
+- **Full Version Control**: Native CLASP integration for Git-like project management.
+- **Visual Execution Monitoring**: Track logs, errors, and performance across all projects in one dashboard.
+- **Multi-Environment Support**: Seamlessly manage Dev, Staging, and Production deployments.
+
+### ⚡ Instant Deployment
+Deploy changes to the Google Cloud in under 60 seconds. Our unified interface handles the complexity of authentication, project creation, and code pushing.
+
+---
+
+## 🎯 Quick Start
+
+### Cloud Deployment (Production)
+ScriptFlow is optimized for Google Cloud Run. Every push to the `main` branch automatically builds and deploys to production via **GitHub Actions**.
+
+- **URL**: [scriptflowapp.space](https://scriptflowapp.space)
+
+### Local Development
+To run ScriptFlow on your machine:
+
+1. **Install Dependencies**:
+   ```bash
+   npm install
+   ```
+2. **Setup Google Auth**:
+   Ensure you have `clasp` installed and authenticated:
+   ```bash
+   npm install -g @google/clasp
+   clasp login
+   ```
+3. **Start the Server**:
+   ```bash
+   npm start
+   # Open http://localhost:8080
+   ```
+
+---
+
+## 🏗️ Technical Architecture
+
+ScriptFlow is built for speed and reliability:
+- **Frontend**: Vanilla JS with modern CSS3 (Glassmorphism design).
+- **Backend**: Node.js / Express.js served via Docker.
+- **Database**: High-performance SQLite for local state management.
+- **Deployment**: Google Cloud Run + Container Registry.
+- **CI/CD**: GitHub Actions using `google-github-actions`.
+
+---
+
+## 🔍 SEO & Visibility
+ScriptFlow is technically optimized for top-tier search visibility:
+- **Rich Snippets**: Full `SoftwareApplication` and `VideoObject` schema integration.
+- **High Intent Content**: Targeted landing pages for "Make.com vs Apps Script" and "Zapier vs Apps Script."
+- **Performance**: Average page size <50KB with optimized WebP assets.
+
+---
+
+## 🤝 Contributing
+Contributions are welcome! Whether it's improving the AI converter logic or refining the IDE experience, feel free to open a PR.
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit changes (`git commit -m 'Add AmazingFeature'`)
+4. Push to branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+---
+
+© 2026 ScriptFlow. Reclaiming automation for developers.
